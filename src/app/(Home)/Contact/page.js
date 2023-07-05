@@ -2,7 +2,10 @@
 import { header } from "@/components/smallComponents/TextComponents";
 export default function Contact() {
   return (
-    <div className="my-10 flex flex-col flex-nowrap justify-center items-center w-full">
+    <div
+      className="my-10 flex flex-col flex-nowrap justify-center items-center w-full"
+      id="contact"
+    >
       <h2 className={`${header({ size: "h1", color: "primary" })} mb-8`}>
         CONTACT ME
       </h2>

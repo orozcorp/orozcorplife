@@ -2,7 +2,10 @@ import { header } from "@/components/smallComponents/TextComponents";
 import Timeline from "@/components/smallComponents/Timeline";
 export default function Resume() {
   return (
-    <div className="my-10 flex flex-col flex-nowrap justify-center items-center w-full">
+    <div
+      className="my-10 flex flex-col flex-nowrap justify-center items-center w-full"
+      id="resume"
+    >
       <h2 className={`${header({ size: "h1", color: "primary" })} mb-4`}>
         RESUME
       </h2>

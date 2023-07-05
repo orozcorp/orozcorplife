@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import "./globals.css";
 import { Noto_Sans } from "next/font/google";
-// import NextAuthSessionProvider from "@/providers/sessionProvider";
+import NextAuthSessionProvider from "@/providers/sessionProvider";
 const notosans = Noto_Sans({
   subsets: ["latin"],
   weight: ["100", "300", "500", "700", "900"],
@@ -29,18 +29,20 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <main
-          style={{
-            display: "flex",
-            flexFlow: "column nowrap",
-            minHeight: "100vh",
-          }}
-          className={notosans.className}
-        >
-          <Navbar />
-          <div style={{ flex: 1 }}>{children}</div>
-          <Footer />
-        </main>
+        <NextAuthSessionProvider>
+          <main
+            style={{
+              display: "flex",
+              flexFlow: "column nowrap",
+              minHeight: "100vh",
+            }}
+            className={notosans.className}
+          >
+            <Navbar />
+            <div style={{ flex: 1 }}>{children}</div>
+            <Footer />
+          </main>
+        </NextAuthSessionProvider>
       </body>
     </html>
   );

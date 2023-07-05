@@ -2,9 +2,12 @@ import Mockup from "@/components/smallComponents/Mockup";
 import { header } from "@/components/smallComponents/TextComponents";
 export default function Portfolio() {
   return (
-    <div className="my-10 flex flex-col flex-nowrap justify-center items-center w-full">
+    <div
+      className="my-10 flex flex-col flex-nowrap justify-center items-center w-full"
+      id="portfolio"
+    >
       <div className="font-thin my-4">MOST RECENT</div>
-      <h2 className={header({ size: "h1", color: "primary" })}>PROYECTS</h2>
+      <h2 className={header({ size: "h1", color: "primary" })}>PROJECTS</h2>
       <div className="flex flex-row flex-wrap w-full justify-center md:justify-between items-center my-8 gap-4">
         <Mockup
           img="https://s3.amazonaws.com/stgfinal/mensajes/BFKQuMxLcF5HDxb9v/1616334156061-790BDD13-A03A-4EF4-94E8-DB239ECC2AEC.jpeg"

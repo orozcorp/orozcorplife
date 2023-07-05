@@ -5,10 +5,13 @@ import { AiOutlineMenu } from "react-icons/ai";
 import useWindowSize from "./hooks/useWindowSize";
 import NavbarDisplayed from "./NavbarDisplayed";
 import Image from "next/image";
+import { useSession, signOut } from "next-auth/react";
+
 export default function Navbar() {
   const size = useWindowSize();
   const width = size?.width ?? 0;
   const [showMenu, setShowMenu] = useState(false);
+  const { data: session, status } = useSession();
   return (
     <>
       <nav className="flex flex-row items-center justify-center bg-white shadow-lg shadow-zinc-600">
@@ -40,10 +43,23 @@ export default function Navbar() {
             <div className="flex justify-between items-center content-center mr-4">
               <div className="flex">
                 <div className="ml-6 flex space-x-8 text-zinc-700">
-                  <Link href="/">Articles</Link>
-                  <Link href="/">Portfolio</Link>
-                  <Link href="/">Resume</Link>
-                  <Link href="/">Contact</Link>
+                  {!session ? (
+                    <>
+                      <Link href="/#articles">Articles</Link>
+                      <Link href="/#portfolio">Portfolio</Link>
+                      <Link href="/#resume">Resume</Link>
+                      <Link href="/#contact">Contact</Link>
+                      <Link href="/api/auth/signin">Sign in</Link>
+                    </>
+                  ) : (
+                    <>
+                      <Link href="/Admin/Articles">Edit Articles</Link>
+                      <Link href="/Admin/Portfolio">Edit Portfolio</Link>
+                      <Link href="/Admin/Resume">Edit Resume</Link>
+                      <Link href="/Admin/Contact">Get Contact</Link>
+                      <button onClick={() => signOut()}>Sign out</button>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
@@ -67,7 +83,11 @@ export default function Navbar() {
         </div>
       </nav>
       {showMenu && (
-        <NavbarDisplayed showMenu={showMenu} setShowMenu={setShowMenu} />
+        <NavbarDisplayed
+          showMenu={showMenu}
+          setShowMenu={setShowMenu}
+          session={session}
+        />
       )}
     </>
   );

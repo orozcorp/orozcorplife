@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 export default function Mockup({ img, title, description, link }) {
   return (
-    <div className="flex flex-col flex-nowrap justify-center items-center">
+    <div className="flex flex-col flex-nowrap justify-center items-center my-4">
       <div className="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[14px] rounded-[2.5rem] h-[600px] w-[300px] shadow-xl">
         <div className="w-[148px] h-[18px] bg-gray-800 top-0 rounded-b-[1rem] left-1/2 -translate-x-1/2 absolute"></div>
         <div className="h-[46px] w-[3px] bg-gray-800 absolute -left-[17px] top-[124px] rounded-l-lg"></div>
@@ -18,8 +18,13 @@ export default function Mockup({ img, title, description, link }) {
           />
         </div>
       </div>
-      {description}
-      <Link href={link}>learn more</Link>
+      <div className="my-4">{description}</div>
+      <Link
+        href={link}
+        className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-zinc-400 rounded-lg hover:bg-zinc-800 focus:ring-4 focus:outline-none focus:ring-zinc-300 dark:bg-zinc-600 dark:hover:bg-zinc-700 dark:focus:ring-zinc-800"
+      >
+        learn more
+      </Link>
     </div>
   );
 }
