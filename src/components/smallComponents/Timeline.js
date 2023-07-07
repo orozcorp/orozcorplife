@@ -1,17 +1,17 @@
+"use client";
+import { useState } from "react";
 import Image from "next/image";
 export default function Timeline({ date, activity }) {
+  const [clicked, setClicked] = useState(false);
   return (
-    <div className="p-5 mb-4 w-80 border border-gray-100 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+    <div className="p-5 mb-4 w-80 md:w-96 border border-gray-100 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
       <time className="text-lg font-semibold text-gray-900 dark:text-white">
         {date}
       </time>
       <ol className="mt-3 divide-y divider-gray-200 dark:divide-gray-700">
         {activity?.map((item, index) => (
-          <li key={index}>
-            <a
-              href="#"
-              className="items-center block p-3 sm:flex hover:bg-gray-100 dark:hover:bg-gray-700"
-            >
+          <li key={index} onClick={() => setClicked(!clicked)}>
+            <div className="items-center cursor-pointer block p-3 sm:flex hover:bg-gray-100 dark:hover:bg-gray-700">
               <Image
                 className="w-12 h-12 mb-3 mr-3 rounded-full sm:mb-0"
                 src={item.logo}
@@ -29,8 +29,13 @@ export default function Timeline({ date, activity }) {
                   </span>
                 </div>
                 <div className="text-sm font-normal">{item.activity}</div>
+                {clicked && (
+                  <div className="text-sm font-normal my-4">
+                    {item.activityDetail}
+                  </div>
+                )}
               </div>
-            </a>
+            </div>
           </li>
         ))}
       </ol>

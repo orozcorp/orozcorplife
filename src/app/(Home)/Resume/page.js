@@ -17,6 +17,7 @@ export default function Resume() {
             company: "company",
             position: "position",
             activity: "activity",
+            activityDetail: "activityDetail",
           },
         ]}
       />
@@ -28,6 +29,7 @@ export default function Resume() {
             company: "company",
             position: "position",
             activity: "activity",
+            activityDetail: "activityDetail",
           },
         ]}
       />
@@ -39,6 +41,7 @@ export default function Resume() {
             company: "company",
             position: "position",
             activity: "activity",
+            activityDetail: "activityDetail",
           },
         ]}
       />
