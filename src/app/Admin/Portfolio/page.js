@@ -11,7 +11,7 @@ export default function page() {
         Add Project to Portfolio
       </button>
 
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg my-8">
+      <div className="overflow-x-auto shadow-md sm:rounded-lg my-8 w-full">
         <table className="w-full text-sm text-left text-gray-500">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
