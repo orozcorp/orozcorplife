@@ -14,17 +14,15 @@ export const resumeResolvers = {
     },
   },
   Mutation: {
-    addResume: async (
-      _,
-      { dateStarted, dateEnded, activity, active },
-      { db }
-    ) => {
+    addResume: async (_, { logo, company, dateStarted, dateEnded }, { db }) => {
       try {
         const resume = await db.collection("Resume").insertOne({
           dateStarted,
           dateEnded,
-          activity,
-          active,
+          logo,
+          company,
+          activity: [],
+          active: true,
         });
         return {
           code: 200,

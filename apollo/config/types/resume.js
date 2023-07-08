@@ -30,10 +30,10 @@ export const resume = gql`
   }
   type Mutation {
     addResume(
+      logo: String!
+      company: String!
       dateStarted: Date!
       dateEnded: Date
-      activity: [ActivityInput!]
-      active: Boolean!
     ): GeneralResponseDataString!
     updateResume(
       id: ID!
