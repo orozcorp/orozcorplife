@@ -3,12 +3,12 @@ import { ObjectId } from "mongodb";
 export const resumeResolvers = {
   Query: {
     getResume: async (_, __, { db }) => {
-      const resume = await db.collection("resume").find({}).toArray();
+      const resume = await db.collection("Resume").find({}).toArray();
       return resume;
     },
     getResumeById: async (_, { id }, { db }) => {
       const resume = await db
-        .collection("resume")
+        .collection("Resume")
         .findOne({ _id: new ObjectId(id) });
       return resume;
     },
@@ -57,7 +57,6 @@ export const resumeResolvers = {
             },
           }
         );
-        console.log(resume);
         return {
           code: 200,
           success: true,

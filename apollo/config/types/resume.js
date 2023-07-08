@@ -3,24 +3,23 @@ import { gql } from "@apollo/client";
 export const resume = gql`
   type Activity {
     dateStarted: Date!
-    logo: String!
-    company: String!
+    dateEnded: Date
     position: String!
     activity: String!
     activityDetail: String!
   }
   type Resume {
-    id: ID!
+    _id: ID!
     dateStarted: Date!
     dateEnded: Date
+    company: String!
     activity: [Activity!]
     active: Boolean!
   }
   input ActivityInput {
     logo: String!
     dateStarted: Date!
-    company: String!
-    position: String!
+
     activity: String!
     activityDetail: String!
   }
