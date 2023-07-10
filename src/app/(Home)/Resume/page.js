@@ -1,6 +1,8 @@
+"use client";
 import { header } from "@/components/smallComponents/TextComponents";
 import { getData } from "@/lib/helpers/getData";
 import Timeline from "@/components/smallComponents/Timeline";
+import { useState, useEffect } from "react";
 const QUERY = `
   query GetResume {
     getResume {
