@@ -22,7 +22,24 @@ const QUERY = `
 `;
 
 export default async function Resume() {
-  const query = await getData({ query: QUERY });
+  const [resume, setResume] = useState([]);
+  const [refetch, setRefetch] = useState(true);
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!refetch) return;
+      try {
+        const query = await getData({
+          query: QUERY,
+        });
+        setResume(query?.getResume);
+        setRefetch(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, [refetch, resume]);
   return (
     <div
       className="my-10 flex flex-col flex-nowrap justify-center items-center w-full"
@@ -31,7 +48,7 @@ export default async function Resume() {
       <h2 className={`${header({ size: "h1", color: "primary" })} mb-4`}>
         RESUME
       </h2>
-      {query?.getResume?.map((resume) => (
+      {resume?.map((resume) => (
         <Timeline key={resume._id} timeline={resume} />
       ))}
     </div>
