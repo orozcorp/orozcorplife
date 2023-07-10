@@ -1,8 +1,8 @@
-"use client";
+
 import { header } from "@/components/smallComponents/TextComponents";
 import { getData } from "@/lib/helpers/getData";
 import Timeline from "@/components/smallComponents/Timeline";
-import { useState, useEffect } from "react";
+
 const QUERY = `
   query GetResume {
     getResume {
@@ -24,24 +24,10 @@ const QUERY = `
 `;
 
 export default async function Resume() {
-  const [resume, setResume] = useState([]);
-  const [refetch, setRefetch] = useState(true);
-  useEffect(() => {
-    const fetchData = async () => {
-      if (!refetch) return;
-      try {
-        const query = await getData({
+  const query = await getData({
           query: QUERY,
         });
-        setResume(query?.getResume);
-        setRefetch(false);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchData();
-  }, [refetch, resume]);
+  const resume = query?.getResume
   return (
     <div
       className="my-10 flex flex-col flex-nowrap justify-center items-center w-full"
