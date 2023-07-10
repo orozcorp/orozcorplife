@@ -17,7 +17,6 @@ const QUERY = `
 
 export default async function Table() {
   const query = await getData({ query: QUERY });
-  console.log(query);
   return (
     <div className="overflow-x-auto shadow-md sm:rounded-lg my-8 w-full">
       <table className="w-full text-sm text-left text-gray-500">

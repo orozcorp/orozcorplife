@@ -73,5 +73,31 @@ export const resumeResolvers = {
         };
       }
     },
+    addActivity: async (_, { id, activity }, { db }) => {
+      try {
+        const resume = await db.collection("Resume").updateOne(
+          { _id: new ObjectId(id) },
+          {
+            $push: {
+              activity,
+            },
+          }
+        );
+        return {
+          code: 200,
+          success: true,
+          message: "Activity added successfully",
+          data: "1",
+        };
+      } catch (error) {
+        console.error(error);
+        return {
+          code: 400,
+          message: "Error al agregar Activity",
+          success: false,
+          data: null,
+        };
+      }
+    },
   },
 };

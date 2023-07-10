@@ -1,5 +1,5 @@
 "use client";
-import { getData } from "@/lib/helpers/getData";
+import { postData } from "@/lib/helpers/getData";
 import { useRef, useState } from "react";
 import ProgressBar from "./ProgressBar";
 import { uploadFiles } from "s3up-client";
@@ -15,7 +15,7 @@ export default async function Upload({
   const inputFile = useRef(null);
   async function signUpload() {
     if (!key) return null;
-    return await getData({
+    return await postData({
       query: `
         mutation Mutation($key: String!) {
         signFile(key: $key) {

@@ -13,13 +13,14 @@ export const resume = gql`
     dateStarted: Date!
     dateEnded: Date
     company: String!
+    logo: String!
     activity: [Activity!]
     active: Boolean!
   }
   input ActivityInput {
-    logo: String!
     dateStarted: Date!
-
+    dateEnded: Date
+    position: String!
     activity: String!
     activityDetail: String!
   }
@@ -41,5 +42,6 @@ export const resume = gql`
       activity: [ActivityInput!]
       active: Boolean!
     ): GeneralResponseDataString!
+    addActivity(id: ID!, activity: ActivityInput!): GeneralResponseDataString!
   }
 `;

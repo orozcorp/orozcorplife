@@ -4,7 +4,7 @@ import Input from "@/components/smallComponents/Input";
 import { useState } from "react";
 import { button } from "@/components/smallComponents/ButtonComponents";
 import UploadImage from "@/components/smallComponents/UploadImage";
-import { getData } from "@/lib/helpers/getData";
+import { postData } from "@/lib/helpers/getData";
 import Spinner from "@/components/smallComponents/Spinner";
 import Alert from "@/components/smallComponents/Alert";
 import { useRouter } from "next/navigation";
@@ -33,7 +33,7 @@ export default function AddToResume({ display, setDisplay }) {
     e.preventDefault();
     setLoading(true);
     try {
-      const save = await getData({
+      const save = await postData({
         query: MUTATION,
         variables: {
           logo,

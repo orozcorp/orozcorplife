@@ -1,4 +1,4 @@
-import { getData } from "@/lib/helpers/getData";
+import { postData } from "@/lib/helpers/getData";
 import { useRef, useState, useEffect } from "react";
 import ProgressBar from "./ProgressBar";
 import { uploadFiles } from "s3up-client";
@@ -6,7 +6,7 @@ import { uploadFiles } from "s3up-client";
 async function signUpload(key) {
   if (!key) return null;
 
-  return await getData({
+  return await postData({
     query: `
       mutation Mutation($key: String!) {
         signFile(key: $key) {
@@ -27,7 +27,6 @@ async function signUpload(key) {
   });
 }
 async function Sign(key) {
-  console.log("Sign");
   try {
     const signPromise = signUpload(key);
     const timeoutPromise = new Promise((resolve) => {

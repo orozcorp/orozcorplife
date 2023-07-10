@@ -1,35 +1,46 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-export default function Timeline({ date, activity }) {
-  const [clicked, setClicked] = useState(false);
+import { format_date } from "@/lib/helpers/formatters";
+export default function Timeline({ timeline }) {
+  const [clicked, setClicked] = useState("");
   return (
-    <div className="p-5 mb-4 w-80 md:w-96 border border-gray-100 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+    <div className="p-5 mb-4 w-80 md:w-full border border-gray-100 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
       <time className="text-lg font-semibold text-gray-900 dark:text-white">
-        {date}
+        {format_date(timeline?.dateStarted)} -{" "}
+        {format_date(timeline?.dateEnded)}
       </time>
+      <div className="flex flex-row flex-wrap justify-start items-center">
+        <Image
+          className="w-12 h-12 mb-3 mr-3 rounded-full sm:mb-0"
+          src={timeline?.logo}
+          alt={timeline?.company}
+          width={48}
+          height={48}
+        />
+        <div className="text-base font-normal">
+          <span className="font-medium text-2xl text-gray-900 dark:text-white">
+            {timeline?.company}
+          </span>{" "}
+        </div>
+      </div>
       <ol className="mt-3 divide-y divider-gray-200 dark:divide-gray-700">
-        {activity?.map((item, index) => (
-          <li key={index} onClick={() => setClicked(!clicked)}>
+        {timeline?.activity?.map((item, index) => (
+          <li
+            key={index}
+            onClick={() => setClicked(clicked === index ? "" : index)}
+          >
             <div className="items-center cursor-pointer block p-3 sm:flex hover:bg-gray-100 dark:hover:bg-gray-700">
-              <Image
-                className="w-12 h-12 mb-3 mr-3 rounded-full sm:mb-0"
-                src={item.logo}
-                alt={item.company}
-                width={48}
-                height={48}
-              />
-              <div className="text-gray-600 dark:text-gray-400">
-                <div className="text-base font-normal">
-                  <span className="font-medium text-gray-900 dark:text-white">
-                    {item.company}
-                  </span>{" "}
-                  <span className="font-medium text-gray-900 dark:text-white">
-                    {item.position}
+              <div className="text-gray-600  w-full">
+                <div className="text-base font-normal flex flex-row flex-wrap w-full justify-between">
+                  {" "}
+                  <div>{item?.position}</div>
+                  <span className="font-medium text-gray-900 text-sm">
+                    {format_date(item?.dateStarted)} -{" "}
+                    {format_date(item?.dateEnded)}
                   </span>
                 </div>
-                <div className="text-sm font-normal">{item.activity}</div>
-                {clicked && (
+                {clicked === index && (
                   <div className="text-sm font-normal my-4">
                     {item.activityDetail}
                   </div>
