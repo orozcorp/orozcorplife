@@ -1,65 +1,25 @@
+"use client";
 import { header } from "@/components/smallComponents/TextComponents";
 import { button } from "@/components/smallComponents/ButtonComponents";
+import Table from "./Table";
+import AddToPortfolio from "./AddToPortfolio";
+import { useState } from "react";
 
-export default function page() {
+export default async function Portfolio() {
+  const [display, setDisplay] = useState("none");
   return (
     <>
+      <AddToPortfolio display={display} setDisplay={setDisplay} />
       <h1 className={`${header({ size: "h1", color: "primary" })} mb-4`}>
         Portfolio
       </h1>
-      <button className={`${button({ color: "primary", fontSize: "medium" })}`}>
+      <button
+        className={`${button({ color: "primary", fontSize: "medium" })}`}
+        onClick={() => setDisplay("block")}
+      >
         Add Project to Portfolio
       </button>
-
-      <div className="overflow-x-auto shadow-md sm:rounded-lg my-8 w-full">
-        <table className="w-full text-sm text-left text-gray-500">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50">
-            <tr>
-              <th scope="col" className="px-6 py-3">
-                Project
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Company
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Description
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Date
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Active
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Action
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="bg-white border-b hover:bg-gray-50">
-              <td className="px-6 py-4">Apple MacBook Pro 17</td>
-              <td className="px-6 py-4">Silver</td>
-              <td className="px-6 py-4">Laptop</td>
-              <td className="px-6 py-4">Yes</td>
-              <td className="px-6 py-4">3.0 lb.</td>
-              <td className="flex items-center px-6 py-4 space-x-3">
-                <a
-                  href="#"
-                  className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                >
-                  Edit
-                </a>
-                <a
-                  href="#"
-                  className="font-medium text-red-600 dark:text-red-500 hover:underline"
-                >
-                  Remove
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <Table />
     </>
   );
 }

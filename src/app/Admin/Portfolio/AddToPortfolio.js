@@ -1,33 +1,44 @@
 "use client";
 import Modal from "@/components/smallComponents/Modal";
 import Input from "@/components/smallComponents/Input";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { button } from "@/components/smallComponents/ButtonComponents";
 import UploadImage from "@/components/smallComponents/UploadImage";
 import { postData } from "@/lib/helpers/getData";
 import Spinner from "@/components/smallComponents/Spinner";
 import Alert from "@/components/smallComponents/Alert";
+import TextArea from "@/components/smallComponents/TextArea";
 import { useRouter } from "next/navigation";
 const MUTATION = `
-  mutation Mutation($logo: String!, $company: String!, $dateStarted: Date!, $dateEnded: Date) {
-    addResume(logo: $logo, company: $company, dateStarted: $dateStarted, dateEnded: $dateEnded) {
+  mutation Mutation($input: PortfolioInput!) {
+    addPortfolio(input: $input) {
       code
       data
-      message
       success
+      message
     }
   }
 `;
-export default function AddToResume({ display, setDisplay }) {
+export default function AddToPortfolio({ display, setDisplay }) {
   const router = useRouter();
   const [values, setValues] = useState({
+    project: "",
     company: "",
-    dateStarted: new Date(),
-    dateEnded: new Date(),
+    description: "",
+    date: new Date(),
+    images: [],
   });
-  const [logo, setLogo] = useState("");
+  const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  useEffect(() => {
+    if (!image) return;
+    if (image) {
+      setValues({ ...values, images: [...values.images, image] });
+      setImage("");
+      return;
+    }
+  }, [image, values]);
   const submit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -35,54 +46,66 @@ export default function AddToResume({ display, setDisplay }) {
       const save = await postData({
         query: MUTATION,
         variables: {
-          logo,
-          company: values.company,
-          dateStarted: values.dateStarted,
-          dateEnded: values.dateEnded,
+          input: {
+            project: values.project,
+            company: values.company,
+            description: values.description,
+            date: values.date,
+            images: values.images,
+          },
         },
       });
-      if (save.addResume.success) {
+      if (save.addPortfolio.success) {
         setValues({
+          project: "",
           company: "",
-          dateStarted: new Date(),
-          dateEnded: new Date(),
+          description: "",
+          date: new Date(),
+          images: [],
         });
         setDisplay("none");
-        setLogo("");
-        router.push(`/Admin/Resume/${save.addResume.data}`);
+        router.push(`/Admin/Portfolio/${save.addPortfolio.data}`);
       } else {
-        setError(save.addResume.message);
+        setError(save.addPortfolio.message);
       }
     } catch (error) {
       setError(error.message);
     }
   };
   return (
-    <Modal display={display} setDisplay={setDisplay} title="Add to resume">
+    <Modal display={display} setDisplay={setDisplay} title="Add to portfolio">
       <form onSubmit={submit}>
+        <div className="flex flex-row flex-wrap justify-between w-full gap-4">
+          <Input
+            type="text"
+            values={values}
+            setValues={setValues}
+            name="project"
+          />
+          <Input
+            type="text"
+            values={values}
+            setValues={setValues}
+            name="company"
+          />
+          <Input
+            type="date"
+            values={values}
+            setValues={setValues}
+            name="date"
+          />
+        </div>
+        <TextArea
+          name="description"
+          values={values}
+          setValues={setValues}
+          width="w-full"
+        />
         <UploadImage
-          heading="Logo"
-          setFoto={setLogo}
-          location="Resume"
+          heading="Image 310x572"
+          setFoto={setImage}
+          location="Projects"
           accept="image/*"
-        />
-        <Input
-          type="text"
-          values={values}
-          setValues={setValues}
-          name="company"
-        />
-        <Input
-          type="date"
-          values={values}
-          setValues={setValues}
-          name="dateStarted"
-        />
-        <Input
-          type="date"
-          values={values}
-          setValues={setValues}
-          name="dateEnded"
         />
         <div className="flex flex-row flex-wrap justify-between items-center">
           <button
@@ -97,10 +120,11 @@ export default function AddToResume({ display, setDisplay }) {
             onClick={(e) => {
               e.preventDefault();
               setValues({
-                logo: "",
+                project: "",
                 company: "",
-                dateStarted: new Date(),
-                dateEnded: new Date(),
+                description: "",
+                date: new Date(),
+                images: [],
               });
               setDisplay("none");
             }}
