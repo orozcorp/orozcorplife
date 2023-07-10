@@ -11,8 +11,8 @@ export default function Mockup({ img, title, description, link }) {
         <div className="rounded-[2rem] overflow-hidden w-[272px] h-[572px] bg-white dark:bg-gray-800">
           <Image
             src={img}
-            className="w-[300px] h-[572px] border"
-            width={300}
+            className="w-[310px] h-[572px] border"
+            width={310}
             height={572}
             alt={title}
           />

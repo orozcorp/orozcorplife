@@ -3,6 +3,7 @@ import { format_date } from "@/lib/helpers/formatters";
 import { getData } from "@/lib/helpers/getData";
 import { button } from "@/components/smallComponents/ButtonComponents";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 const QUERY = `
   query GetResume {
     getResume {
@@ -16,7 +17,24 @@ const QUERY = `
 `;
 
 export default async function Table() {
-  const query = await getData({ query: QUERY });
+  const [resume, setResume] = useState([]);
+  const [refetch, setRefetch] = useState(true);
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!refetch) return;
+      try {
+        const query = await getData({
+          query: QUERY,
+        });
+        setResume(query?.getResume);
+        setRefetch(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, [refetch, resume]);
   return (
     <div className="overflow-x-auto shadow-md sm:rounded-lg my-8 w-full">
       <table className="w-full text-sm text-left text-gray-500">
@@ -37,7 +55,7 @@ export default async function Table() {
           </tr>
         </thead>
         <tbody>
-          {query?.getResume?.map((resume) => (
+          {resume?.map((resume) => (
             <tr className="bg-white border-b hover:bg-gray-50" key={resume._id}>
               <td className="px-6 py-4">{`${format_date(
                 resume?.dateStarted
