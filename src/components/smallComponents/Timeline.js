@@ -41,7 +41,10 @@ export default function Timeline({ timeline }) {
                   </span>
                 </div>
                 {clicked === index && (
-                  <div className="text-sm font-normal my-4">
+                  <div
+                    className="text-sm font-normal my-4"
+                    style={{ whiteSpace: "pre-line" }}
+                  >
                     {item.activityDetail}
                   </div>
                 )}
