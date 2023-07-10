@@ -1,6 +1,7 @@
 import { format_date } from "@/lib/helpers/formatters";
 import Link from "next/link";
 import { getData } from "@/lib/helpers/getData";
+import { button } from "@/components/smallComponents/ButtonComponents";
 const QUERY = `
   query GetPortfolios {
     getPortfolios {
@@ -48,11 +49,14 @@ export default async function Table() {
               className="bg-white border-b hover:bg-gray-50"
               key={portfolio?._id}
             >
-              <td className="px-6 py-4">{portfolio?.description}</td>
+              <td className="px-6 py-4">{portfolio?.project}</td>
               <td className="px-6 py-4">{portfolio?.company}</td>
               <td className="px-6 py-4 whitespace-pre-line">
-                {portfolio?.description}
+                {portfolio?.description && portfolio.description.length > 100
+                  ? `${portfolio.description.slice(0, 100)}...`
+                  : portfolio?.description}
               </td>
+
               <td className="px-6 py-4">{format_date(portfolio?.date)}</td>
               <td className="px-6 py-4">
                 {" "}

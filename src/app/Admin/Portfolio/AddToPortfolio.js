@@ -9,6 +9,7 @@ import Spinner from "@/components/smallComponents/Spinner";
 import Alert from "@/components/smallComponents/Alert";
 import TextArea from "@/components/smallComponents/TextArea";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 const MUTATION = `
   mutation Mutation($input: PortfolioInput!) {
     addPortfolio(input: $input) {
@@ -33,11 +34,13 @@ export default function AddToPortfolio({ display, setDisplay }) {
   const [error, setError] = useState("");
   useEffect(() => {
     if (!image) return;
-    if (image) {
+
+    const timeoutId = setTimeout(() => {
       setValues({ ...values, images: [...values.images, image] });
       setImage("");
-      return;
-    }
+    }, 1500);
+
+    return () => clearTimeout(timeoutId);
   }, [image, values]);
   const submit = async (e) => {
     e.preventDefault();
@@ -107,7 +110,29 @@ export default function AddToPortfolio({ display, setDisplay }) {
           location="Projects"
           accept="image/*"
         />
-        <div className="flex flex-row flex-wrap justify-between items-center">
+        <div className="flex flex-row flex-wrap justify-start gap-4 my-4">
+          {values.images.map((image, index) => (
+            <div
+              key={index}
+              className="relative"
+              onClick={() =>
+                setValues({
+                  ...values,
+                  images: values.images.filter((img) => img !== image),
+                })
+              }
+            >
+              <Image
+                src={image}
+                alt="image"
+                width={80}
+                height={80}
+                className="w-20 h-20 object-cover rounded-md"
+              />
+            </div>
+          ))}
+        </div>
+        <div className="flex flex-row flex-wrap justify-start items-stretch gap-4">
           <button
             type="submit"
             disabled={loading}
@@ -132,6 +157,7 @@ export default function AddToPortfolio({ display, setDisplay }) {
             Cancelar
           </button>
         </div>
+
         {error && <Alert color="red" type="Error" description={error} />}
       </form>
     </Modal>
