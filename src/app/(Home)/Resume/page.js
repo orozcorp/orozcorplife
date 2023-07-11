@@ -1,4 +1,3 @@
-
 import { header } from "@/components/smallComponents/TextComponents";
 import { getData } from "@/lib/helpers/getData";
 import Timeline from "@/components/smallComponents/Timeline";
@@ -24,10 +23,8 @@ const QUERY = `
 `;
 
 export default async function Resume() {
-  const query = await getData({
-          query: QUERY,
-        });
-  const resume = query?.getResume
+  const query = await getData({ query: QUERY });
+  const resume = query?.getResume;
   return (
     <div
       className="my-10 flex flex-col flex-nowrap justify-center items-center w-full"
