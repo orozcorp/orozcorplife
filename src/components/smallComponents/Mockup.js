@@ -18,13 +18,15 @@ export default function Mockup({ img, title, description, link }) {
           />
         </div>
       </div>
-      <div className="my-4">{description}</div>
-      <Link
-        href={link}
-        className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-zinc-400 rounded-lg hover:bg-zinc-800 focus:ring-4 focus:outline-none focus:ring-zinc-300 dark:bg-zinc-600 dark:hover:bg-zinc-700 dark:focus:ring-zinc-800"
-      >
-        learn more
-      </Link>
+      {description && <div className="my-4">{description}</div>}
+      {link && (
+        <Link
+          href={link}
+          className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-zinc-400 rounded-lg hover:bg-zinc-800 focus:ring-4 focus:outline-none focus:ring-zinc-300 dark:bg-zinc-600 dark:hover:bg-zinc-700 dark:focus:ring-zinc-800"
+        >
+          learn more
+        </Link>
+      )}
     </div>
   );
 }
