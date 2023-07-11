@@ -3,7 +3,9 @@ import { ObjectId } from "mongodb";
 export const resumeResolvers = {
   Query: {
     getResume: async (_, __, { db }) => {
+      console.log("hitting the resolver");
       const resume = await db.collection("Resume").find({}).toArray();
+      console.log(resume);
       return resume;
     },
     getResumeById: async (_, { id }, { db }) => {
@@ -17,8 +19,8 @@ export const resumeResolvers = {
     addResume: async (_, { logo, company, dateStarted, dateEnded }, { db }) => {
       try {
         const resume = await db.collection("Resume").insertOne({
-          dateStarted,
-          dateEnded,
+          dateStarted: new Date(dateStarted),
+          dateEnded: new Date(dateEnded),
           logo,
           company,
           activity: [],
@@ -50,8 +52,8 @@ export const resumeResolvers = {
           { _id: new ObjectId(id) },
           {
             $set: {
-              dateStarted,
-              dateEnded,
+              dateStarted: new Date(dateStarted),
+              dateEnded: new Date(dateEnded),
               activity,
               active,
             },

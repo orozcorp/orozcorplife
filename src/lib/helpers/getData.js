@@ -9,6 +9,7 @@ export async function getData({ query, variables }, refetch = false) {
       variables,
       refetch,
     }),
+    cache: "no-store",
   });
   const { data } = await res.json();
   return data;
