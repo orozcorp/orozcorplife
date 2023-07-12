@@ -45,7 +45,7 @@ export default function Navbar() {
                 <div className="ml-6 flex space-x-8 text-zinc-700">
                   {!session ? (
                     <>
-                      <Link href="/#articles">Articles</Link>
+                      {/* <Link href="/#articles">Articles</Link> */}
                       <Link href="/#portfolio">Portfolio</Link>
                       <Link href="/#resume">Resume</Link>
                       <Link href="/#contact">Contact</Link>
