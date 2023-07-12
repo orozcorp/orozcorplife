@@ -25,7 +25,6 @@ const QUERY = `
 export default async function Resume() {
   const query = await getData({ query: QUERY });
   const resume = query?.getResume;
-
   return (
     <div
       className="my-10 flex flex-col flex-nowrap justify-center items-center w-full"
