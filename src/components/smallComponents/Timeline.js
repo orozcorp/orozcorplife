@@ -12,7 +12,7 @@ export default function Timeline({ timeline }) {
       </time>
       <div className="flex flex-row flex-wrap justify-start items-center">
         <Image
-          className="w-12 h-12 mb-3 mr-3 rounded-full sm:mb-0"
+          className="w-12 h-12 mb-3 mr-3 rounded-full sm:mb-0 object-cover object-center aspect-square"
           src={timeline?.logo}
           alt={timeline?.company}
           width={48}

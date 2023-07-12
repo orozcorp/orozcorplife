@@ -27,10 +27,10 @@ export default async function Resume() {
   const resume = query?.getResume;
   return (
     <div
-      className="my-10 flex flex-col flex-nowrap justify-center items-center w-full"
+      className="my-10 flex flex-col flex-nowrap justify-center items-center w-full "
       id="resume"
     >
-      <h2 className={`${header({ size: "h1", color: "primary" })} mb-4`}>
+      <h2 className={`${header({ size: "h1", color: "primary" })} mb-20`}>
         RESUME
       </h2>
       {resume?.map((resume) => (

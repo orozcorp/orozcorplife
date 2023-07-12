@@ -23,7 +23,7 @@ export default async function Portfolio() {
     >
       <div className="font-thin my-4">MOST RECENT</div>
       <h2 className={header({ size: "h1", color: "primary" })}>PROJECTS</h2>
-      <div className="flex flex-row flex-wrap w-full justify-center md:justify-between items-center my-8 gap-4">
+      <div className="flex flex-row flex-wrap w-full justify-center items-center my-8 gap-4">
         {portfolios?.map((portfolio) => (
           <Mockup
             key={portfolio?._id}
