@@ -54,7 +54,12 @@ export default function AddToPortfolio({ display, setDisplay }) {
             company: values.company,
             description: values.description,
             date: values.date,
-            images: values.images,
+            images: values.images.map((image) =>
+              image.replace(
+                "https://s3.us-east-2.amazonaws.com/orozcorp",
+                "https://orozcorp.s3.us-east-2.amazonaws.com"
+              )
+            ),
           },
         },
       });

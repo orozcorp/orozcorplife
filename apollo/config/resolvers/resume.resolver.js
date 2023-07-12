@@ -3,9 +3,7 @@ import { ObjectId } from "mongodb";
 export const resumeResolvers = {
   Query: {
     getResume: async (_, __, { db }) => {
-      console.log("hitting the resolver");
       const resume = await db.collection("Resume").find({}).toArray();
-      console.log(resume);
       return resume;
     },
     getResumeById: async (_, { id }, { db }) => {

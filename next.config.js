@@ -14,6 +14,7 @@ module.exports = {
       "orozcorp.s3.us-east-2.amazonaws.com",
       "res.cloudinary.com",
       "s3.amazonaws.com",
+      "s3.us-east-2.amazonaws.com",
     ],
     unoptimized: false,
   },
