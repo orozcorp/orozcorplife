@@ -2,7 +2,7 @@
 import { header } from "@/components/smallComponents/TextComponents";
 import { getData } from "@/lib/helpers/getData";
 import Timeline from "@/components/smallComponents/Timeline";
-
+import Image from "next/image";
 const QUERY = `
   query GetResume {
     getResume {
@@ -31,18 +31,31 @@ export default async function Resume() {
       className="my-10 flex flex-col flex-nowrap justify-center items-center w-full "
       id="resume"
     >
-      <h2 className={`${header({ size: "h1", color: "primary" })} mb-20`}>
-        RESUME
-      </h2>
+      <div className="w-full flex flex-row flex-wrap items-center">
+        <Image
+          src="https://orozcorp.s3.us-east-2.amazonaws.com/Personal/IMG_2776.jpeg"
+          alt="Eduardo Orozco Mendoza"
+          width={100}
+          height={190}
+          className="rounded-full"
+        />
+
+        <div className="flex flex-col flex-nowrap flex-1 ml-8">
+          <h2 className={`${header({ size: "h1", color: "primary" })}  `}>
+            RESUME
+          </h2>
+          <p className="my-4">
+            I am Eduardo Orozco, a seasoned Full Stack Developer, Entrepreneur,
+            and Chief Operating Officer with a solid foundation in strategic
+            thinking and innovative problem-solving. Armed with a proven track
+            record in operational leadership and technical expertise, I bring a
+            robust understanding of operations management, full-stack
+            development, data analytics, project management, and business
+            development.
+          </p>
+        </div>
+      </div>
       <div className="mb-20 self-start ">
-        <p className="my-4">
-          I am Eduardo Orozco, a seasoned Full Stack Developer, Entrepreneur,
-          and Chief Operating Officer with a solid foundation in strategic
-          thinking and innovative problem-solving. Armed with a proven track
-          record in operational leadership and technical expertise, I bring a
-          robust understanding of operations management, full-stack development,
-          data analytics, project management, and business development.
-        </p>
         <p className="my-4">
           I hold a Bachelor's degree in Entrepreneurship from ITESM CSF. My
           technical skills are multifaceted. I am proficient in JavaScript,

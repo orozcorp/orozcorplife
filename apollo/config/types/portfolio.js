@@ -23,5 +23,10 @@ export const portfolio = gql`
   }
   type Mutation {
     addPortfolio(input: PortfolioInput!): GeneralResponseDataString!
+    updatePortfolioImage(
+      id: ID!
+      image: String!
+      action: String!
+    ): GeneralResponseDataString!
   }
 `;
