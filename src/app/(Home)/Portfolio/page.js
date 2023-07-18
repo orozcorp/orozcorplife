@@ -25,10 +25,10 @@ export default async function Portfolio() {
       <h2 className={`${header({ size: "h1", color: "primary" })} mb-8`}>
         PROJECTS
       </h2>
-      <div style={{ width: "90vw" }}>
-        <div className="w-full overflow-scroll flex flex-row flex-nowrap justify-center gap-8">
+      <div className="w-screen">
+        <div className="w-full overflow-scroll flex flex-row flex-nowrap justify-center gap-8 mx-8">
           <div
-            className="overflow-x-scroll flex"
+            className="overflow-x-scroll flex gap-8 mx-8"
             style={{ scrollBehavior: "smooth" }}
           >
             {portfolios?.map((portfolio) => (
