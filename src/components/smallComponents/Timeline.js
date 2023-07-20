@@ -4,6 +4,7 @@ import Image from "next/image";
 import { format_date } from "@/lib/helpers/formatters";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { rgbDataURL } from "@/lib/helpers/blur";
 export default function Timeline({ timeline }) {
   const [clicked, setClicked] = useState("");
   const { ref, inView } = useInView({
@@ -33,6 +34,8 @@ export default function Timeline({ timeline }) {
             alt={timeline?.company}
             width={48}
             height={48}
+            blurDataURL={rgbDataURL(0, 0, 0)}
+            loading="lazy"
           />
           <div className="text-base font-normal">
             <span className="font-medium text-2xl text-gray-900 dark:text-white">

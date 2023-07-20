@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
+import { rgbDataURL } from "@/lib/helpers/blur";
 import { motion } from "framer-motion";
 export default function Mockup({ img, title, description, link }) {
   return (
@@ -18,6 +19,8 @@ export default function Mockup({ img, title, description, link }) {
               width={310}
               height={572}
               alt={title}
+              blurDataURL={rgbDataURL(0, 0, 0)}
+              loading="lazy"
             />
           </div>
         </div>

@@ -9,6 +9,7 @@ import Spinner from "@/components/smallComponents/Spinner";
 import Alert from "@/components/smallComponents/Alert";
 import TextArea from "@/components/smallComponents/TextArea";
 import { useRouter } from "next/navigation";
+import { rgbDataURL } from "@/lib/helpers/blur";
 import Image from "next/image";
 const MUTATION = `
   mutation Mutation($input: PortfolioInput!) {
@@ -133,6 +134,8 @@ export default function AddToPortfolio({ display, setDisplay }) {
                 width={80}
                 height={80}
                 className="w-20 h-20 object-cover rounded-md"
+                blurDataURL={rgbDataURL(0, 0, 0)}
+                loading="lazy"
               />
             </div>
           ))}

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { rgbDataURL } from "@/lib/helpers/blur";
 export default function Card({ img, title, description, link }) {
   return (
     <div className="w-80 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -10,6 +11,8 @@ export default function Card({ img, title, description, link }) {
           height={100}
           src={img}
           alt={title}
+          blurDataURL={rgbDataURL(0, 0, 0)}
+          loading="lazy"
         />
       </a>
       <div className="p-5">

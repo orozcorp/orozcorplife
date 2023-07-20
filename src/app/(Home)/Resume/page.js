@@ -3,6 +3,7 @@ import { header } from "@/components/smallComponents/TextComponents";
 import { getData } from "@/lib/helpers/getData";
 import Timeline from "@/components/smallComponents/Timeline";
 import Image from "next/image";
+import { rgbDataURL } from "@/lib/helpers/blur";
 
 const QUERY = `
   query GetResume {
@@ -39,6 +40,8 @@ export default async function Resume() {
           width={100}
           height={190}
           className="rounded-full"
+          blurDataURL={rgbDataURL(0, 0, 0)}
+          loading="lazy"
         />
 
         <div className="flex flex-col flex-nowrap flex-1 ml-8">

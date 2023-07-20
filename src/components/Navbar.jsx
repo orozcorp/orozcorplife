@@ -6,7 +6,7 @@ import useWindowSize from "./hooks/useWindowSize";
 import NavbarDisplayed from "./NavbarDisplayed";
 import Image from "next/image";
 import { useSession, signOut } from "next-auth/react";
-
+import { rgbDataURL } from "@/lib/helpers/blur";
 export default function Navbar() {
   const size = useWindowSize();
   const width = size?.width ?? 0;
@@ -25,6 +25,8 @@ export default function Navbar() {
                       src="https://s3.amazonaws.com/stgfinal/mensajes/BFKQuMxLcF5HDxb9v/1616334156061-790BDD13-A03A-4EF4-94E8-DB239ECC2AEC.jpeg"
                       width={50}
                       height={65}
+                      blurDataURL={rgbDataURL(0, 0, 0)}
+                      loading="lazy"
                       style={{
                         width: "50px",
                         height: "65px",
