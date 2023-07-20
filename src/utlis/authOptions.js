@@ -13,7 +13,7 @@ export const authOptions = {
   adapter: MongoDBAdapter(clientPromise),
   theme: {
     colorScheme: "light",
-    brandColor: "rgb(7 89 133)",
+    brandColor: "rgb(0,0,0)",
     logo: "https://orozcorp.s3.us-east-2.amazonaws.com/orozcorp/TECBOY+FACE.svg",
     buttonText: "#fff",
   },
