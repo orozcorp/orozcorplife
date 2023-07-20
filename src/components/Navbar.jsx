@@ -15,7 +15,7 @@ export default function Navbar() {
   return (
     <>
       <nav className="flex flex-row items-center justify-center bg-white shadow-lg shadow-zinc-600">
-        <div className="w-11/12 flex flex-row items-center h-16 justify-between bg-opacity-0">
+        <div className="w-11/12 flex flex-row items-center h-20 justify-between bg-opacity-0">
           <div className="flex justify-between items-center content-center bg-opacity-0">
             <div className="flex bg-opacity-0">
               <div className="ml-6 flex space-x-8 bg-opacity-0">
@@ -24,10 +24,10 @@ export default function Navbar() {
                     <Image
                       src="https://s3.amazonaws.com/stgfinal/mensajes/BFKQuMxLcF5HDxb9v/1616334156061-790BDD13-A03A-4EF4-94E8-DB239ECC2AEC.jpeg"
                       width={50}
-                      height={50}
+                      height={65}
                       style={{
                         width: "50px",
-                        height: "50px",
+                        height: "65px",
                         borderRadius: "50%",
                         overflow: "hidden",
                       }}

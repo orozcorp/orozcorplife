@@ -57,9 +57,6 @@ module.exports = {
     DB_URI: process.env.DB_URI,
   },
   modularizeImports: {
-    lodash: {
-      transform: "lodash/{{member}}",
-    },
     "react-icons": {
       transform: "react-icons/{{member}}",
     },
