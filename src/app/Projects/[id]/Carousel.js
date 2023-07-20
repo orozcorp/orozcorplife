@@ -35,7 +35,7 @@ export default function Carousel({ images, title }) {
 
   return (
     <div
-      className="overflow-x-scroll flex gap-4"
+      className="overflow-x-scroll flex gap-20 h-full"
       style={{ scrollBehavior: "smooth" }}
       ref={carouselRef}
     >

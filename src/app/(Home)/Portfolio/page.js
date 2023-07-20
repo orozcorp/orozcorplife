@@ -1,5 +1,3 @@
-"use client";
-import { useState, useEffect } from "react";
 import Mockup from "@/components/smallComponents/Mockup";
 import { header } from "@/components/smallComponents/TextComponents";
 import { getData } from "@/lib/helpers/getData";
@@ -16,34 +14,9 @@ query GetPortfolios {
 }
 `;
 
-function PortfolioParentComponent() {
-  const [loading, setLoading] = useState(true);
-  const [portfolios, setPortfolios] = useState([]);
-
-  useEffect(() => {
-    async function fetchPortfolios() {
-      const data = await getData({ query: QUERY });
-      setPortfolios(data?.getPortfolios);
-      setLoading(false);
-    }
-
-    fetchPortfolios();
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center w-full h-56 border  rounded-lg bg-gray-50 my-20">
-        <div className="px-3 py-1 text-3xl font-3xl leading-none text-center text-blue-800 bg-blue-200 rounded-full animate-pulse">
-          Loading Projects ....
-        </div>
-      </div>
-    );
-  }
-
-  return <Portfolio portfolios={portfolios} />;
-}
-
-export function Portfolio({ portfolios }) {
+export default async function Portfolio() {
+  const data = await getData({ query: QUERY });
+  const portfolios = data?.getPortfolios || [];
   return (
     <div
       className="my-10 flex flex-col flex-nowrap justify-center items-center w-full "
@@ -74,5 +47,3 @@ export function Portfolio({ portfolios }) {
     </div>
   );
 }
-
-export default PortfolioParentComponent;

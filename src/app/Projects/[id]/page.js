@@ -2,6 +2,7 @@ import { header } from "@/components/smallComponents/TextComponents";
 import { getData } from "@/lib/helpers/getData";
 import Carousel from "./Carousel";
 import { format_date } from "@/lib/helpers/formatters";
+import Portfolio from "@/app/(Home)/Portfolio/page";
 const QUERY = `
   query GetPortfolioById($getPortfolioByIdId: ID!) {
     getPortfolioById(id: $getPortfolioByIdId) {
@@ -46,7 +47,7 @@ export default async function Project({ params }) {
           <Carousel images={portfolio?.images} title={portfolio?.project} />
         </div>
       </div>
-      <main className="flex flex-col flex-nowrap w-full justify-center items-center">
+      <section className="flex flex-col flex-nowrap w-full justify-center items-center">
         <div className="flex flex-row flex-wrap p-4 w-full md:w-3/4 items-center justify-center">
           <div className="flex flex-col flex-nowrap w-full justify-start items-start">
             <p className="my-20 whitespace-pre-line">
@@ -54,7 +55,8 @@ export default async function Project({ params }) {
             </p>
           </div>
         </div>
-      </main>
+      </section>
+      <Portfolio />
     </>
   );
 }
