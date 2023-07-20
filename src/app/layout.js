@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import "./globals.css";
 import { Noto_Sans } from "next/font/google";
 import NextAuthSessionProvider from "@/providers/sessionProvider";
+import Script from "next/script";
 const notosans = Noto_Sans({
   subsets: ["latin"],
   weight: ["100", "300", "500", "700", "900"],
@@ -28,6 +29,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <Script strategy="lazyOnload" id="gtm-script">
+        {`
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-KDZ3MK63');
+          `}
+      </Script>
       <body>
         <NextAuthSessionProvider>
           <main
@@ -44,6 +54,14 @@ export default function RootLayout({ children }) {
           </main>
         </NextAuthSessionProvider>
       </body>
+      <noscript>
+        <iframe
+          src="https://www.googletagmanager.com/ns.html?id=GTM-KDZ3MK63"
+          height="0"
+          width="0"
+          style={{ display: "none", visibility: "hidden" }}
+        ></iframe>
+      </noscript>
     </html>
   );
 }
