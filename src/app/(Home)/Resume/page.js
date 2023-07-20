@@ -1,8 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
+"use client";
+import { useState, useEffect } from "react";
 import { header } from "@/components/smallComponents/TextComponents";
 import { getData } from "@/lib/helpers/getData";
 import Timeline from "@/components/smallComponents/Timeline";
 import Image from "next/image";
+
 const QUERY = `
   query GetResume {
     getResume {
@@ -23,9 +26,33 @@ const QUERY = `
   }
 `;
 
-export default async function Resume() {
-  const query = await getData({ query: QUERY });
-  const resume = query?.getResume;
+function ResumeParentComponent() {
+  const [loading, setLoading] = useState(true);
+  const [resume, setResume] = useState([]);
+
+  useEffect(() => {
+    async function fetchResume() {
+      const data = await getData({ query: QUERY });
+      setResume(data?.getResume);
+      setLoading(false);
+    }
+
+    fetchResume();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center w-full h-56 border  rounded-lg bg-gray-50 my-20">
+        <div className="px-3 py-1 text-3xl font-3xl leading-none text-center text-blue-800 bg-blue-200 rounded-full animate-pulse">
+          Loading Resume ....
+        </div>
+      </div>
+    );
+  }
+
+  return <Resume resume={resume} />;
+}
+function Resume({ resume }) {
   return (
     <div
       className="my-10 flex flex-col flex-nowrap justify-center items-center w-full "
@@ -96,3 +123,5 @@ export default async function Resume() {
     </div>
   );
 }
+
+export default ResumeParentComponent;

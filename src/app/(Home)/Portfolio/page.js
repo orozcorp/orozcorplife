@@ -1,3 +1,5 @@
+"use client";
+import { useState, useEffect } from "react";
 import Mockup from "@/components/smallComponents/Mockup";
 import { header } from "@/components/smallComponents/TextComponents";
 import { getData } from "@/lib/helpers/getData";
@@ -13,12 +15,38 @@ query GetPortfolios {
   }
 }
 `;
-export default async function Portfolio() {
-  const data = await getData({ query: QUERY });
-  const portfolios = data?.getPortfolios;
+
+function PortfolioParentComponent() {
+  const [loading, setLoading] = useState(true);
+  const [portfolios, setPortfolios] = useState([]);
+
+  useEffect(() => {
+    async function fetchPortfolios() {
+      const data = await getData({ query: QUERY });
+      setPortfolios(data?.getPortfolios);
+      setLoading(false);
+    }
+
+    fetchPortfolios();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center w-full h-56 border  rounded-lg bg-gray-50 my-20">
+        <div className="px-3 py-1 text-3xl font-3xl leading-none text-center text-blue-800 bg-blue-200 rounded-full animate-pulse">
+          Loading Projects ....
+        </div>
+      </div>
+    );
+  }
+
+  return <Portfolio portfolios={portfolios} />;
+}
+
+export function Portfolio({ portfolios }) {
   return (
     <div
-      className="my-10 flex flex-col flex-nowrap justify-center items-center w-full"
+      className="my-10 flex flex-col flex-nowrap justify-center items-center w-full "
       id="portfolio"
     >
       <div className="font-thin my-4">MOST RECENT</div>
@@ -26,9 +54,9 @@ export default async function Portfolio() {
         PROJECTS
       </h2>
       <div className="w-screen">
-        <div className="w-full overflow-scroll flex flex-row flex-nowrap justify-center gap-8 mx-8">
+        <div className="w-full overflow-x-scroll flex flex-row flex-nowrap justify-center mx-14 my-20 h-screen">
           <div
-            className="overflow-x-scroll flex gap-8 mx-8"
+            className="overflow-x-scroll flex gap-20 h-full "
             style={{ scrollBehavior: "smooth" }}
           >
             {portfolios?.map((portfolio) => (
@@ -43,9 +71,8 @@ export default async function Portfolio() {
           </div>
         </div>
       </div>
-      {/* <button className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-zinc-400 rounded-lg hover:bg-zinc-800 focus:ring-4 focus:outline-none focus:ring-zinc-300 dark:bg-zinc-600 dark:hover:bg-zinc-700 dark:focus:ring-zinc-800">
-        View more
-      </button> */}
     </div>
   );
 }
+
+export default PortfolioParentComponent;
