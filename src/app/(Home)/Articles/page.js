@@ -1,6 +1,21 @@
 import { header } from "@/components/smallComponents/TextComponents";
 import Card from "@/components/smallComponents/Card";
-export default function Articles() {
+const QUERY = `
+  query BlogGetAll {
+    blogGetAll {
+      _id
+      description
+      title
+      images {
+        url
+      }
+    }
+  }
+`;
+import { getData } from "@/lib/helpers/getData";
+export default async function Articles() {
+  const data = await getData({ query: QUERY });
+  const blogs = data?.blogGetAll || [];
   return (
     <div
       className="my-10 flex flex-col flex-nowrap justify-center items-center w-full"
@@ -9,16 +24,16 @@ export default function Articles() {
       <div className="font-thin my-4">MOST POPULAR</div>
       <h2 className={header({ size: "h1", color: "primary" })}>ARTICLES</h2>
       <div className="flex flex-row flex-wrap w-full justify-center md:justify-between items-center my-8 gap-4">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        {blogs?.map((blog) => (
+          <Card
+            key={blog._id}
+            img={blog?.images[0]?.url || ""}
+            link={`/Articles/${blog._id}`}
+            title={blog.title}
+            description={blog.description}
+          />
+        ))}
       </div>
-      <button className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-zinc-400 rounded-lg hover:bg-zinc-800 focus:ring-4 focus:outline-none focus:ring-zinc-300 dark:bg-zinc-600 dark:hover:bg-zinc-700 dark:focus:ring-zinc-800">
-        View more
-      </button>
     </div>
   );
 }

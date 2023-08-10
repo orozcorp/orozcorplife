@@ -11,7 +11,9 @@ export default function Home() {
       {/* <Hero /> */}
       <div className="flex flex-row flex-wrap p-4 w-full md:w-3/4 items-center justify-center">
         <div className="flex flex-col flex-nowrap w-full justify-start">
-          {/* <Articles /> */}
+          <Suspense fallback={<p>Loading articles...</p>}>
+            <Articles />
+          </Suspense>
           <Suspense fallback={<p>Loading portfolio...</p>}>
             <Portfolio />
           </Suspense>

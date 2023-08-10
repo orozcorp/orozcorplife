@@ -112,3 +112,49 @@ th {
 td {
   border-bottom: 0.5px solid #14282f;
 }
+
+/*
+  ADDING TAILWIND FOR BLOGS
+
+*/
+
+h1 {
+  margin-bottom: 1rem;
+font-size: 2.5rem;
+line-height: 2.5rem;
+font-weight: 800;
+letter-spacing: -0.025em;
+line-height: 1;
+color: #111827;
+
+
+@media (min-width: 768px) {
+  font-size: 2.5rem;
+line-height: 1;
+ }
+@media (min-width: 1024px) {
+  font-size: 2.5rem;
+line-height: 1;
+ }
+
+}
+h2{
+  font-size: 2.25rem;
+line-height: 2.5rem;
+font-weight: 700;
+  margin-top: 1.5rem;
+margin-bottom: 1.5rem;
+}
+h3{
+  font-size: 1.9rem;
+line-height: 2rem;
+font-weight: 700;
+}
+p {
+  margin-top: 1.5rem;
+margin-bottom: 1.5rem;
+}
+/*
+  SECTION END
+
+*/
