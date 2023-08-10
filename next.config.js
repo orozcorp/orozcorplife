@@ -54,7 +54,7 @@ module.exports = {
   swcMinify: true,
   optimizeFonts: false,
   env: {
-    BASE_URL: dev ? "http://localhost:3000/" : "https://www.orozcorp.life/",
+    BASE_URL: dev ? "http://localhost:3000/" : "https://www.orozcorp.io/",
     DB_URI: process.env.DB_URI,
   },
   modularizeImports: {
