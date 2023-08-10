@@ -1,7 +1,7 @@
-import schema from "../../../apollo/config/schema";
-import resolvers from "../../../apollo/config/resolvers";
+import schema from "../../../../apollo/config/schema";
+import resolvers from "../../../../apollo/config/resolvers";
 const typeDefs = schema;
-import { context } from "../../../apollo/config/context";
+import { context } from "../../../../apollo/config/context";
 
 import { ApolloServer } from "@apollo/server";
 import { ApolloServerPluginLandingPageDisabled } from "@apollo/server/plugin/disabled";

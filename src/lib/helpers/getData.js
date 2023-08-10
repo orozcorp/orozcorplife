@@ -1,5 +1,5 @@
 export async function getData({ query, variables }, refetch = false) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_ROOT_URL}/api`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_ROOT_URL}/api/graphql`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -16,7 +16,7 @@ export async function getData({ query, variables }, refetch = false) {
 }
 
 export async function postData({ query, variables }) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_ROOT_URL}/api`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_ROOT_URL}/api/graphql`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

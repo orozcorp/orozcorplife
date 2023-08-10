@@ -4,8 +4,6 @@ import "./globals.css";
 import { Noto_Sans } from "next/font/google";
 import NextAuthSessionProvider from "@/providers/sessionProvider";
 import Script from "next/script";
-import { Suspense } from "react";
-import Analytics from "@/lib/Analytics";
 const notosans = Noto_Sans({
   subsets: ["latin"],
   weight: ["100", "300", "500", "700", "900"],

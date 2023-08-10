@@ -9,6 +9,8 @@ export const responses = gql`
     success: Boolean!
     "Human-readable message for the UI"
     message: String!
+    "data as string"
+    data: String
   }
   type GeneralResponseDataString {
     "Similar to HTTP status code, represents the status of the mutation"

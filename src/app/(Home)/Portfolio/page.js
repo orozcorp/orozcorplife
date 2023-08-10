@@ -2,16 +2,16 @@ import Mockup from "@/components/smallComponents/Mockup";
 import { header } from "@/components/smallComponents/TextComponents";
 import { getData } from "@/lib/helpers/getData";
 const QUERY = `
-query GetPortfolios {
-  getPortfolios {
-    _id
-    company
-    images
-    project
-    description
-    date
+  query GetPortfolios {
+    getPortfolios {
+      _id
+      company
+      images
+      project
+      description
+      date
+    }
   }
-}
 `;
 
 export default async function Portfolio() {
