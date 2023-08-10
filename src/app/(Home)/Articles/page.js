@@ -23,7 +23,7 @@ export default async function Articles() {
     >
       <div className="font-thin my-4">MOST POPULAR</div>
       <h2 className={header({ size: "h1", color: "primary" })}>ARTICLES</h2>
-      <div className="flex flex-row flex-wrap w-full justify-center md:justify-between items-center my-8 gap-4">
+      <div className="flex flex-row flex-wrap w-full justify-center md:justify-between items-stretch content-center my-8 gap-4">
         {blogs?.map((blog) => (
           <Card
             key={blog._id}
