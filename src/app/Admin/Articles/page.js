@@ -1,11 +1,24 @@
 import { header } from "@/components/smallComponents/TextComponents";
 import WriteArticle from "./(components)/WriteArticle";
+import Link from "next/link";
 const QUERY = `
   query GetPrompts {
     getPrompts {
       _id
       description
       prompt
+    }
+    blogGetAll {
+      _id
+      description
+      title
+      status
+      article{
+        tags
+      }
+      images {
+        url
+      }
     }
   }
 `;
@@ -17,11 +30,13 @@ export default async function Articles() {
     label: prompt.description,
     prompt: prompt.prompt,
   }));
+  const blogs = data?.blogGetAll || [];
   return (
     <>
       <h1 className={`${header({ size: "h1", color: "primary" })} mb-4`}>
         Articles
       </h1>
+
       <WriteArticle prompts={prompts} />
       <div className="overflow-x-auto shadow-md sm:rounded-lg my-8 w-full">
         <table className="w-full text-sm text-left text-gray-500">
@@ -47,7 +62,27 @@ export default async function Articles() {
               </th>
             </tr>
           </thead>
-          <tbody></tbody>
+          <tbody>
+            {blogs?.map((blog) => (
+              <tr key={blog._id} className="border-b border-gray-200">
+                <td className="px-6 py-4">{blog.title}</td>
+                <td className="px-6 py-4 ">{blog.description}</td>
+                <td className="px-6 py-4 ">{blog.article.tags?.join(", ")}</td>
+                <td className="px-6 py-4 ">{blog.status}</td>
+                <td className="px-6 py-4 ">
+                  {blog.images?.length > 0 ? "Yes" : "No"}
+                </td>
+                <td className="px-6 py-4 ">
+                  <Link
+                    className="text-blue-500 hover:text-blue-700"
+                    href={`/Admin/Articles/BlogEdit/${blog._id}`}
+                  >
+                    Edit
+                  </Link>
+                </td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </div>
     </>
