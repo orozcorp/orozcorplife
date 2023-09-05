@@ -6,8 +6,8 @@ export default function Trabajo({ trabajo }) {
     <div>
       <Image
         src={trabajo.url}
-        width={200}
-        height={200}
+        width={150}
+        height={150}
         alt={trabajo.url}
         className="h-auto max-w-md rounded-lg shadow-xl"
         loading="lazy"
