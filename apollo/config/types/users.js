@@ -35,10 +35,17 @@ export const usersSchema = gql`
     phone: String!
     company: String!
   }
+  input InsertTrabajos {
+    idUser: String!
+    userName: String!
+    trabajos: [String!]!
+  }
   type Query {
     getUserProfile(idUser: String!, oldMed: Boolean!): User
+    getFamily(idUser: String!): [User]
   }
   type Mutation {
     addContact(input: ContactInput!): GeneralResponseDataString!
+    addTrabajos(input: InsertTrabajos!): GeneralResponseDataString!
   }
 `;

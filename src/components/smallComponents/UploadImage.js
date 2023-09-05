@@ -5,7 +5,6 @@ import { uploadFiles } from "s3up-client";
 
 async function signUpload(key) {
   if (!key) return null;
-
   return await postData({
     query: `
       mutation Mutation($key: String!) {

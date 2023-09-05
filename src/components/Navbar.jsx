@@ -11,6 +11,7 @@ export default function Navbar() {
   const size = useWindowSize();
   const width = size?.width ?? 0;
   const [showMenu, setShowMenu] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const { data: session, status } = useSession();
   return (
     <>
@@ -19,25 +20,23 @@ export default function Navbar() {
           <div className="flex justify-between items-center content-center bg-opacity-0">
             <div className="flex bg-opacity-0">
               <div className="ml-6 flex space-x-8 bg-opacity-0">
-                <Link href="/">
-                  <div className="flex flex-row flex-wrap items-center justify-center gap-4">
-                    <Image
-                      src="https://s3.amazonaws.com/stgfinal/mensajes/BFKQuMxLcF5HDxb9v/1616334156061-790BDD13-A03A-4EF4-94E8-DB239ECC2AEC.jpeg"
-                      width={50}
-                      height={65}
-                      blurDataURL={rgbDataURL(0, 0, 0)}
-                      loading="lazy"
-                      style={{
-                        width: "50px",
-                        height: "65px",
-                        borderRadius: "50%",
-                        overflow: "hidden",
-                      }}
-                      alt="Orozcorp"
-                    />
-                    <div className="text-zinc-700 text-2xl">Eduardo Orozco</div>{" "}
-                  </div>
-                </Link>
+                <div className="flex flex-row flex-wrap items-center justify-center gap-4">
+                  <Image
+                    src="https://s3.amazonaws.com/stgfinal/mensajes/BFKQuMxLcF5HDxb9v/1616334156061-790BDD13-A03A-4EF4-94E8-DB239ECC2AEC.jpeg"
+                    width={50}
+                    height={65}
+                    blurDataURL={rgbDataURL(0, 0, 0)}
+                    loading="lazy"
+                    style={{
+                      width: "50px",
+                      height: "65px",
+                      borderRadius: "50%",
+                      overflow: "hidden",
+                    }}
+                    alt="Orozcorp"
+                  />
+                  <div className="text-zinc-700 text-2xl">Eduardo Orozco</div>{" "}
+                </div>
               </div>
             </div>
           </div>
@@ -55,10 +54,49 @@ export default function Navbar() {
                     </>
                   ) : (
                     <>
-                      <Link href="/Admin/Articles">Edit Articles</Link>
-                      <Link href="/Admin/Portfolio">Edit Portfolio</Link>
-                      <Link href="/Admin/Resume">Edit Resume</Link>
-                      <Link href="/Admin/Contact">Get Contact</Link>
+                      <Link href="/Photos">Photos</Link>
+                      <div className="relative inline-block text-left">
+                        <div>
+                          <button
+                            onClick={() => setIsOpen(!isOpen)}
+                            className="inline-flex justify-center w-full rounded-md bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
+                          >
+                            Edit Info
+                          </button>
+                        </div>
+                      </div>
+                      <div
+                        className={`origin-top-right absolute top-14 right-8 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 ${
+                          isOpen ? "block" : "hidden"
+                        }`}
+                      >
+                        <div className="py-1" role="menu">
+                          <Link
+                            href="/Admin/Articles"
+                            className="text-gray-700 block px-4 py-2 text-sm"
+                          >
+                            Edit Articles
+                          </Link>
+                          <Link
+                            href="/Admin/Portfolio"
+                            className="text-gray-700 block px-4 py-2 text-sm"
+                          >
+                            Edit Portfolio
+                          </Link>
+                          <Link
+                            href="/Admin/Resume"
+                            className="text-gray-700 block px-4 py-2 text-sm"
+                          >
+                            Edit Resume
+                          </Link>
+                          <Link
+                            href="/Admin/Contact"
+                            className="text-gray-700 block px-4 py-2 text-sm"
+                          >
+                            Get Contact
+                          </Link>
+                        </div>
+                      </div>
                       <button onClick={() => signOut()}>Sign out</button>
                     </>
                   )}

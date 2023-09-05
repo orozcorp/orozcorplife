@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 const SearchableSelect = ({ options = [], value, onChange }) => {
-  const [search, setSearch] = useState(value?.label);
+  const [search, setSearch] = useState(value?.label || "");
   const [isOpen, setIsOpen] = useState(false);
   const filteredOptions = (options || []).filter(
     (option) =>

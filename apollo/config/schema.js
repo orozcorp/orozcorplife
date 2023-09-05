@@ -6,6 +6,7 @@ import { resume } from "./types/resume";
 import { portfolio } from "./types/portfolio";
 import { prompts } from "./types/prompts";
 import { article } from "./types/articles";
+import { trabajos } from "./types/trabajos";
 const schema = mergeTypeDefs([
   responses,
   uploadSchema,
@@ -14,5 +15,6 @@ const schema = mergeTypeDefs([
   portfolio,
   prompts,
   article,
+  trabajos,
 ]);
 export default schema;

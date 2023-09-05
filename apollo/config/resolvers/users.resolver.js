@@ -22,6 +22,22 @@ export const usersResolvers = {
 
       return user;
     },
+    getFamily: async (root, { idUser }, { db }) => {
+      const familia = await db
+        .collection("users")
+        .findOne(
+          { _id: new ObjectId(idUser) },
+          { projection: { "profile.familias": 1 } }
+        );
+      const idFamilia = familia.profile.familias.find(
+        (familia) => familia.nuclear === true
+      );
+      const familyMembers = await db
+        .collection("users")
+        .find({ "profile.familias._id": idFamilia._id })
+        .toArray();
+      return familyMembers;
+    },
   },
   Mutation: {
     addContact: async (root, { input }, { db }) => {
@@ -42,6 +58,26 @@ export const usersResolvers = {
           data: null,
         };
       }
+    },
+    addTrabajos: async (root, { input }, { db }) => {
+      const { idUser, userName, trabajos } = input;
+
+      const toInsert = trabajos.map((trabajo) => ({
+        url: trabajo,
+        userId: idUser,
+        userName: userName,
+        date: new Date(),
+        status: "new",
+      }));
+
+      await db.collection("Trabajos").insertMany(toInsert);
+
+      return {
+        code: 200,
+        success: true,
+        message: "Trabajos added successfully",
+        data: null,
+      };
     },
   },
 };
