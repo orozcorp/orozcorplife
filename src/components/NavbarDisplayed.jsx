@@ -28,6 +28,9 @@ export default function NavbarDisplayed({ showMenu, setShowMenu, session }) {
         {session && (
           <>
             <div className="mt-3 text-white text-3xl">
+              <Link href="/Photos">Photos</Link>
+            </div>
+            <div className="mt-3 text-white text-3xl">
               <Link href="/Admin/Articles">Articles</Link>
             </div>
             <div className="mt-3 text-white text-3xl">
