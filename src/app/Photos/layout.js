@@ -8,7 +8,7 @@ export default async function layout({ children }) {
   }
   return (
     <main className="flex flex-col flex-nowrap w-full justify-center items-center">
-      <div className="flex flex-row flex-wrap p-4 w-full md:w-[95%] items-center justify-center">
+      <div className="flex flex-row flex-wrap p-4 w-[90vw] items-center justify-center">
         <div className="flex flex-col flex-nowrap w-full justify-start items-start">
           {children}
         </div>
