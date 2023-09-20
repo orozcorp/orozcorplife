@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { postData } from "@/lib/helpers/getData";
 import Upload from "@/components/smallComponents/Upload";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 const MUTATION = `
   mutation Mutation($input: InsertTrabajos!) {
     addTrabajos(input: $input) {
@@ -18,6 +18,7 @@ export default function InsertImages({ userId }) {
   const [percent, setPercent] = useState(0);
   const [keys, setKeys] = useState([]);
   const router = useRouter();
+  const pathname = usePathname();
   const blogUpdate = async (e) => {
     e.preventDefault();
     console.log({
@@ -47,7 +48,7 @@ export default function InsertImages({ userId }) {
     setKeys([]);
     setPercent(0);
     setLoading(false);
-    router.replace(router.asPath);
+    router.replace(pathname);
   };
   return (
     <form

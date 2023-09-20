@@ -23,6 +23,7 @@ export const authOptions = {
       const existe = await db
         .collection("users")
         .findOne({ email: user?.email });
+
       if (existe) {
         return true;
       } else {

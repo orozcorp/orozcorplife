@@ -18,10 +18,15 @@ export default async function FamilyArt({ user }) {
     variables: { idUser: user.value },
   });
   const trabajos = data?.getTrabajos || [];
+  const name = user.label
+    .toLowerCase()
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
   return (
     <div className="mt-8 flex flex-col flex-nowrap w-full">
-      <h3 className="w-full text-center my-8">Trabajos de {user.label}</h3>
-      <div className="flex flex-row flex-wrap  justify-center gap-4 items-center w-full ">
+      <h3 className="w-full text-center my-8">Trabajos de {name}</h3>
+      <div className="flex flex-row flex-wrap  justify-between gap-4 items-center w-full ">
         {trabajos.map((trabajo) => (
           <Trabajo key={trabajo._id} trabajo={trabajo} />
         ))}

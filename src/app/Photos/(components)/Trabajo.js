@@ -2,7 +2,9 @@
 import Image from "next/image";
 import { useState } from "react";
 import { rgbDataURL } from "@/lib/helpers/blur";
-import TrabajoModal from "./TrabajoModal";
+import dynamic from "next/dynamic";
+const TrabajoModal = dynamic(() => import("./TrabajoModal"));
+
 export default function Trabajo({ trabajo }) {
   const [isModalOpen, setModalOpen] = useState(false);
 
@@ -23,15 +25,18 @@ export default function Trabajo({ trabajo }) {
           alt={trabajo.url}
           className="h-auto max-w-md rounded-lg shadow-xl cursor-pointer"
           loading="lazy"
-          quality={50}
+          formats={["webp", "jpeg"]}
+          quality={10}
           blurDataURL={rgbDataURL(0, 0, 0)}
         />
       </div>
-      <TrabajoModal
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-        imageUrl={trabajo.url}
-      />
+      {isModalOpen && (
+        <TrabajoModal
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          imageUrl={trabajo.url}
+        />
+      )}
     </>
   );
 }
