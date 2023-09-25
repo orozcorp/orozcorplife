@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import ProgressBar from "./ProgressBar";
 import { postData } from "@/lib/helpers/getData";
 import { uploadFiles } from "s3up-client";
-
+import Toast from "./Toast";
 export default function Upload({
   percent,
   setPercent,
@@ -10,8 +10,8 @@ export default function Upload({
   fileKeys,
   setFileKeys,
 }) {
+  const [error, setError] = useState(null);
   const inputFile = useRef(null);
-
   async function signUpload(individualKey) {
     if (!individualKey) return null;
     const result = await postData({
@@ -41,7 +41,6 @@ export default function Upload({
     const keys = files.map(
       (file) => `orozcorp/trabajos/${location}/${Date.now()}-${file.name}`
     );
-    console.log("Generated keys:", keys);
     setFileKeys(keys);
   }
 
@@ -66,7 +65,6 @@ export default function Upload({
         throw new Error("Sign returned null or undefined");
       }
     }
-
     if (fileKeys.length > 0) {
       const uploadPromises = fileKeys.map((individualKey, index) => {
         return new Promise((resolve, reject) => {
@@ -84,9 +82,11 @@ export default function Upload({
       Promise.all(uploadPromises)
         .then(() => {
           console.log("All files uploaded successfully");
+          setError(null);
         })
         .catch((error) => {
           console.log("Error uploading files:", error);
+          setError(`Error uploading files. Please try again. : ${error}`);
         });
     }
   }, [fileKeys, setPercent]);
@@ -108,6 +108,7 @@ export default function Upload({
         multiple
       />
       {percent > 0 && <ProgressBar completed={percent} />}
+      {error && <Toast message={error} />}
     </div>
   );
 }
