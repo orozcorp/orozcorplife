@@ -68,7 +68,7 @@ export default function UploadFoto({ setFoto, percent, setPercent }) {
 
   function uploadImage() {
     const Ogfile = inputFile.current.files[0];
-    setKey(`viva/blog/${Date.now()}-${Ogfile.name}`);
+    setKey(`orozcorp/image/${Date.now()}-${Ogfile.name}`);
   }
 
   return (

@@ -21,18 +21,7 @@ export default function InsertImages({ userId }) {
   const pathname = usePathname();
   const blogUpdate = async (e) => {
     e.preventDefault();
-    console.log({
-      input: {
-        idUser: userId.value,
-        userName: userId.label,
-        trabajos: keys.map(
-          (key) => `https://s3.us-east-2.amazonaws.com/orozcorp/${key}`
-        ),
-      },
-    });
-
     setLoading(true);
-
     const data = await postData({
       query: MUTATION,
       variables: {

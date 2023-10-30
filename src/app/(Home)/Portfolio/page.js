@@ -1,6 +1,7 @@
 import Mockup from "@/components/smallComponents/Mockup";
 import { header } from "@/components/smallComponents/TextComponents";
 import { getData } from "@/lib/helpers/getData";
+
 const QUERY = `
   query GetPortfolios {
     getPortfolios {
