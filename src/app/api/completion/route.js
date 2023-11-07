@@ -14,7 +14,7 @@ export async function POST(req) {
   const { prompt } = await req.json();
   console.log("CALLED TRANSFORM");
   const response = await openai.createChatCompletion({
-    model: "gpt-4",
+    model: "gpt-4-1106-preview",
     stream: true,
     messages: [
       {
