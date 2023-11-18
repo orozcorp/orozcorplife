@@ -35,10 +35,10 @@ export default async function Resume() {
     >
       <div className="w-full flex flex-row flex-wrap items-center">
         <Image
-          src="https://orozcorp.s3.us-east-2.amazonaws.com/Personal/IMG_2776.jpeg"
+          src="https://orozcorp.s3.us-east-2.amazonaws.com/orozcorp/IMG_0054-testsmall.jpg"
           alt="Eduardo Orozco Mendoza"
           width={100}
-          height={190}
+          height={153}
           className="rounded-full"
           blurDataURL={rgbDataURL(0, 0, 0)}
           loading="lazy"

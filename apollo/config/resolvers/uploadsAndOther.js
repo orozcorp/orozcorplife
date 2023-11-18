@@ -31,7 +31,7 @@ export const uploadsResolver = {
       try {
         const sign = await s3Up.signUpload(newKey);
         return {
-          url: sign.url,
+          url: sign.url.slice(0, -1),
           fields: {
             key: sign.fields.key,
             bucket: sign.fields.bucket,
