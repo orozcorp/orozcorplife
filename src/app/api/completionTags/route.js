@@ -14,7 +14,6 @@ const openai = new OpenAIApi(apiConfig);
 export async function POST(req) {
   // Extract the `prompt` from the body of the request
   const { prompt } = await req.json();
-  console.log("called tags");
   const response = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
     stream: true,

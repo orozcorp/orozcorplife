@@ -12,7 +12,6 @@ const openai = new OpenAIApi(apiConfig);
 export async function POST(req) {
   // Extract the `prompt` from the body of the request
   const { prompt } = await req.json();
-  console.log("CALLED TRANSFORM");
   const response = await openai.createChatCompletion({
     model: "gpt-4-1106-preview",
     stream: true,

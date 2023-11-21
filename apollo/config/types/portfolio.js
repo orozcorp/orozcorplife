@@ -9,6 +9,8 @@ export const portfolio = gql`
     date: Date!
     images: [String!]
     active: Boolean!
+    keywords: [String!]
+    descriptionMeta: String
   }
   input PortfolioInput {
     project: String!
@@ -16,6 +18,8 @@ export const portfolio = gql`
     description: String!
     date: Date!
     images: [String!]
+    keywords: [String!]
+    descriptionMeta: String
   }
   type Query {
     getPortfolios: [Portfolio!]

@@ -3,6 +3,7 @@ import Modal from "@/components/smallComponents/Modal";
 import Input from "@/components/smallComponents/Input";
 import { useState, useEffect } from "react";
 import { button } from "@/components/smallComponents/ButtonComponents";
+import KeywordsInput from "@/components/smallComponents/KeywordsInput";
 import UploadImage from "@/components/smallComponents/UploadImage";
 import { postData } from "@/lib/helpers/getData";
 import Spinner from "@/components/smallComponents/Spinner";
@@ -29,6 +30,8 @@ export default function AddToPortfolio({ display, setDisplay }) {
     description: "",
     date: new Date(),
     images: [],
+    keywords: [], // Added for keywords
+    descriptionMeta: "", // Added for descriptionMeta
   });
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -51,10 +54,7 @@ export default function AddToPortfolio({ display, setDisplay }) {
         query: MUTATION,
         variables: {
           input: {
-            project: values.project,
-            company: values.company,
-            description: values.description,
-            date: values.date,
+            ...values,
             images: values.images.map((image) =>
               image.replace(
                 "https://s3.us-east-2.amazonaws.com/orozcorp",
@@ -110,6 +110,14 @@ export default function AddToPortfolio({ display, setDisplay }) {
           setValues={setValues}
           width="w-full"
         />
+        <TextArea
+          name="descriptionMeta"
+          values={values}
+          setValues={setValues}
+          width="w-full"
+          placeholder="Meta Description"
+        />
+        <KeywordsInput values={values} setValues={setValues} name="keywords" />
         <UploadImage
           heading="Image 310x572"
           setFoto={setImage}

@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-
+import axios from "axios";
 export const articleResolvers = {
   Query: {
     chatGetAll: async (parent, args, { db }) => {
@@ -13,12 +13,11 @@ export const articleResolvers = {
         const data = await db
           .collection("Blog")
           .find()
-          .sort({ "article.publisedTime": 1 })
-          .limit(3)
+          .sort({ "article.publisedTime": -1 })
           .toArray();
+
         return data;
       } catch (error) {
-        console.log(error);
         return [];
       }
     },
@@ -44,12 +43,13 @@ export const articleResolvers = {
           prompt,
           messages: [],
         };
-        const { insertedId } = await db.collection("Chat").insertOne(chat);
+        const chatInserted = await db.collection("Chat").insertOne(chat);
+
         return {
           success: true,
           message: "Chat created successfully",
           code: 200,
-          data: insertedId,
+          data: chatInserted.insertedId,
         };
       } catch (error) {
         return {
@@ -146,7 +146,7 @@ export const articleResolvers = {
             publishedTime: date,
             modifiedTime: date,
             expirationTime: futureDate,
-            authors: ["https://www.vivaaerobus.com"],
+            authors: ["https://www.orozcorp.io"],
             tags,
           },
           images: [],
@@ -187,7 +187,8 @@ export const articleResolvers = {
           title,
           description,
         };
-        const { value } = await db.collection("Blog").updateOne(
+
+        const updatedBlog = await db.collection("Blog").updateOne(
           { _id: new ObjectId(_id) },
           {
             $set: {
@@ -198,11 +199,12 @@ export const articleResolvers = {
             },
           }
         );
+
         return {
           code: 200,
           success: true,
           message: "Blog actualizado exitosamente",
-          data: value,
+          data: updatedBlog?.value,
         };
       } catch (error) {
         console.log(error);
@@ -215,7 +217,7 @@ export const articleResolvers = {
     },
     blogUpdateContent: async (root, { _id, content }, { db }) => {
       try {
-        const { value } = await db.collection("Blog").updateOne(
+        const updatedBlog = await db.collection("Blog").updateOne(
           { _id: new ObjectId(_id) },
           {
             $set: {
@@ -224,11 +226,52 @@ export const articleResolvers = {
             },
           }
         );
+        const blog = await db
+          .collection("Blog")
+          .findOne({ _id: new ObjectId(_id) });
+        const postData = {
+          author: `urn:li:person:${process.env.LinkedInUserID}`,
+          lifecycleState: "PUBLISHED",
+          specificContent: {
+            "com.linkedin.ugc.ShareContent": {
+              shareCommentary: {
+                text: blog.title + "\n\n" + blog.description,
+              },
+              shareMediaCategory: "ARTICLE",
+              media: [
+                {
+                  status: "READY",
+                  description: {
+                    text: blog.description,
+                  },
+                  originalUrl: `https://www.orozcorp.live/Articles/${blog._id}`,
+                  title: {
+                    text: blog.title,
+                  },
+                },
+              ],
+            },
+          },
+          visibility: {
+            "com.linkedin.ugc.MemberNetworkVisibility": "PUBLIC",
+          },
+        };
+        // Execute the LinkedIn API request
+        const response = await axios.post(
+          "https://api.linkedin.com/v2/ugcPosts",
+          postData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${process.env.LinkedInToken}`,
+            },
+          }
+        );
         return {
           code: 200,
           success: true,
           message: "Blog actualizado exitosamente",
-          data: value,
+          data: updatedBlog?.value,
         };
       } catch (error) {
         console.log(error);

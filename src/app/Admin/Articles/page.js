@@ -22,6 +22,7 @@ const QUERY = `
     }
   }
 `;
+
 import { getData } from "@/lib/helpers/getData";
 export default async function Articles() {
   const data = await getData({ query: QUERY });
@@ -36,8 +37,9 @@ export default async function Articles() {
       <h1 className={`${header({ size: "h1", color: "primary" })} mb-4`}>
         Articles
       </h1>
-
-      <WriteArticle prompts={prompts} />
+      <div className="flex flex-row flex-wrap w-full justify-between items-center">
+        <WriteArticle prompts={prompts} />
+      </div>
       <div className="overflow-x-auto shadow-md sm:rounded-lg my-8 w-full">
         <table className="w-full text-sm text-left text-gray-500">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50">

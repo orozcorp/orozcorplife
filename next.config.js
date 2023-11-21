@@ -55,7 +55,7 @@ module.exports = {
   optimizeFonts: false,
   env: {
     BASE_URL: dev ? "http://localhost:3000/" : "https://www.orozcorp.io/",
-    DB_URI: process.env.DB_URI,
+    DB_URI: process.env.MONGODB_URI,
   },
   modularizeImports: {
     "react-icons": {

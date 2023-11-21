@@ -89,6 +89,7 @@ export default function Blog({ id }) {
   }, [content, isQuillLoaded]);
   const blogUpdateContent = async () => {
     setLoading(true);
+
     const response = await postData({
       query: MUTATION,
       variables: {
