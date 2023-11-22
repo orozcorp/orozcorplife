@@ -38,7 +38,7 @@ export default function Chat({
         },
         {
           role: "user",
-          content: `Please write a summary about '${title}'. The summary should be from the perspective of an experienced entrepreneur addressing young entrepreneurs of small companies. Focus on a logical and clear tone, aiming to simplify complex IT concepts for a mainstream audience. Ensure that the summary is accessible and easy to understand, breaking down technical jargon into simpler terms where necessary`,
+          content: `Please paraphrase and expand on '${title}'. This new text should be from the perspective of an  entrepreneur addressing young entrepreneurs of small companies. Focus on a logical and clear tone, aiming to simplify complex IT concepts for a mainstream audience. Ensure that the summary is accessible and easy to understand, breaking down technical jargon into simpler terms where necessary`,
           id: uuidv4(),
           createdAt: new Date(),
         },
