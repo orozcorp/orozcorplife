@@ -38,7 +38,7 @@ export default function Chat({
         },
         {
           role: "user",
-          content: `Please paraphrase and expand on '${title}'. This new text should be from the perspective of an  entrepreneur addressing young entrepreneurs of small companies. Focus on a logical and clear tone, aiming to simplify complex IT concepts for a mainstream audience. Ensure that the summary is accessible and easy to understand, breaking down technical jargon into simpler terms where necessary. It has to be extremely thorough and detailed, with a minimum of 500 words.`,
+          content: `Please paraphrase and expand on '${title}'. This new text should be from the perspective of an  entrepreneur addressing young entrepreneurs of small companies. Focus on a logical and clear tone, aiming to simplify complex IT concepts for a mainstream audience. Ensure that the summary is accessible and easy to understand, breaking down technical jargon into simpler terms where necessary. It has to be extremely thorough and detailed, with a minimum of 500 words. Write it in the language of the original article.`,
           id: uuidv4(),
           createdAt: new Date(),
         },
