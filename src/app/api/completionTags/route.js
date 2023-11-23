@@ -25,6 +25,7 @@ export async function POST(req) {
           You are going to create a blog post on the subject ${prompt},
           designed to be informative for everyone. Your task is to develop the title, tags, and description according to the provided format.
           The title should be appealing, relevant to your demographic, and MUST BE FEWER THAN 6 WORDS.
+          And Must be in the same language as the ${prompt}.
           The content must be SEO-optimized and follow this GraphQL schema:
           type Blog {
             title: String!
