@@ -5,13 +5,17 @@ export default function BlogSingle({ blog }) {
   return (
     <div className="w-80 bg-white border border-gray-200 rounded-lg shadow flex flex-col flex-nowrap justify-between items-center">
       <Link href={`/Admin/Articles/BlogEdit/${blog?._id}`}>
-        <Image
-          className="rounded-t-lg"
-          src={blog?.images[0]?.url}
-          alt=""
-          width={300}
-          height={300}
-        />
+        {blog?.images[0]?.url ? (
+          <Image
+            className="rounded-t-lg"
+            src={blog?.images[0]?.url}
+            alt=""
+            width={300}
+            height={300}
+          />
+        ) : (
+          <></>
+        )}
       </Link>
       <div className="p-5 flex flex-col flex-nowrap justify-start content-between items-between">
         <Link href={`/Admin/Articles/BlogEdit/${blog?._id}`}>

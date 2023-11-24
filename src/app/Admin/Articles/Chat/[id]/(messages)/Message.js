@@ -97,7 +97,7 @@ export default function Message({
   return (
     <div
       key={m?.id}
-      className={`p-2 m-1 whitespace-pre-line flex flex-col flex-nowrap max-w-xl w-fit  ${
+      className={`p-2 m-1 whitespace-pre-line flex flex-col flex-nowrap w-fit  ${
         m?.role === "user"
           ? "text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 text-justify self-end"
           : m?.role === "system"

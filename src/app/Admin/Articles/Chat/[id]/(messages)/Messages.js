@@ -84,22 +84,24 @@ export default function Chat({
       {errorMutation !== "" && (
         <Toast message={errorMutation} onClick={() => setErrorMutation("")} />
       )}
-      <div
-        ref={chatContainerRef}
-        className="flex flex-col flex-nowrap justify-start overflow-y-auto w-full self-start h-full"
-      >
-        {messages.map((m) => (
-          <Message
-            key={m.id}
-            m={m}
-            isLoading={isLoading}
-            title={title}
-            _id={id}
-            setErrorMutation={setErrorMutation}
-            setErrorTags={setErrorTags}
-            setErrorContent={setErrorContent}
-          />
-        ))}
+      <div className="drop-shadow-md shadow-slate-800 w-full border rounded h-[70vh] overflow-y-auto">
+        <div
+          ref={chatContainerRef}
+          className="flex flex-col flex-nowrap justify-start overflow-y-auto w-full self-start h-full"
+        >
+          {messages.map((m) => (
+            <Message
+              key={m.id}
+              m={m}
+              isLoading={isLoading}
+              title={title}
+              _id={id}
+              setErrorMutation={setErrorMutation}
+              setErrorTags={setErrorTags}
+              setErrorContent={setErrorContent}
+            />
+          ))}
+        </div>
       </div>
       <form
         onSubmit={handleSubmit}
