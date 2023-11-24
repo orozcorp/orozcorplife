@@ -29,7 +29,7 @@ export default async function ChatGen({ params }) {
   return (
     <>
       <h1 className="text-2xl font-extrabold my-4">{chat.title}</h1>
-      <div className="drop-shadow-md shadow-slate-800 w-full border rounded h-[80vh] overflow-y-auto">
+      <div className="drop-shadow-md shadow-slate-800 w-full border rounded h-[70vh] overflow-y-auto">
         <Messages
           id={id}
           prompt={chat?.prompt}
