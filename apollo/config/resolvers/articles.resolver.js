@@ -14,6 +14,7 @@ export const articleResolvers = {
           .collection("Blog")
           .find()
           .sort({ "article.publisedTime": -1 })
+          .limit(4)
           .toArray();
 
         return data;
