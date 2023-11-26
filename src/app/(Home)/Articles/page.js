@@ -1,8 +1,8 @@
 import { header } from "@/components/smallComponents/TextComponents";
 import Card from "@/components/smallComponents/Card";
 const QUERY = `
-  query BlogGetAll {
-    blogGetAll {
+  query BlogGetAll($limit: Int) {
+    blogGetAll(limit: $limit) {
       _id
       description
       title
@@ -14,7 +14,7 @@ const QUERY = `
 `;
 import { getData } from "@/lib/helpers/getData";
 export default async function Articles() {
-  const data = await getData({ query: QUERY });
+  const data = await getData({ query: QUERY, variables: { limit: 3 } });
   const blogs = data?.blogGetAll || [];
   return (
     <div

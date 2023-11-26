@@ -84,7 +84,7 @@ export const article = gql`
     blogUpdateContent(_id: ID!, content: String!): GeneralResponse
   }
   type Query {
-    blogGetAll: [Blog]
+    blogGetAll(limit: Int): [Blog]
     blogGetById(_id: ID!): Blog
   }
 `;

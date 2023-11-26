@@ -2,13 +2,13 @@ import { header } from "@/components/smallComponents/TextComponents";
 import WriteArticle from "./(components)/WriteArticle";
 import Link from "next/link";
 const QUERY = `
-  query GetPrompts {
+  query GetPrompts($limit: Int) {
     getPrompts {
       _id
       description
       prompt
     }
-    blogGetAll {
+     blogGetAll(limit: $limit){
       _id
       description
       title
@@ -25,7 +25,7 @@ const QUERY = `
 
 import { getData } from "@/lib/helpers/getData";
 export default async function Articles() {
-  const data = await getData({ query: QUERY });
+  const data = await getData({ query: QUERY, variables: { limit: 1000 } });
   const prompts = data?.getPrompts?.map((prompt) => ({
     value: prompt._id,
     label: prompt.description,

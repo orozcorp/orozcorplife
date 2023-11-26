@@ -8,13 +8,13 @@ export const articleResolvers = {
     chatGetById: async (parent, { _id }, { db }) => {
       return await db.collection("Chat").findOne({ _id: new ObjectId(_id) });
     },
-    blogGetAll: async (root, args, { db }) => {
+    blogGetAll: async (root, { limit }, { db }) => {
       try {
         const data = await db
           .collection("Blog")
           .find()
           .sort({ "article.publisedTime": -1 })
-          .limit(4)
+          .limit(limit)
           .toArray();
 
         return data;

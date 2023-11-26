@@ -1,6 +1,6 @@
 const QUERY = `
-  query BlogGetAll {
-    blogGetAll {
+  query BlogGetAll($limit: Int) {
+    blogGetAll(limit: $limit) {
       _id
       description
       title
@@ -17,7 +17,7 @@ const BlogSingle = dynamic(() => import("../(components)/BlogSingle"), {
 });
 import { getData } from "@/lib/helpers/getData";
 export default async function Index() {
-  const data = await getData({ query: QUERY });
+  const data = await getData({ query: QUERY, variables: { limit: 1000 } });
   const blogs = data?.blogGetAll || [];
   return (
     <div>
