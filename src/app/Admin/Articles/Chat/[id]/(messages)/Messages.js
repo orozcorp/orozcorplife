@@ -6,6 +6,7 @@ import { postData } from "@/lib/helpers/getData";
 import Toast from "@/components/smallComponents/Toast";
 import Message from "./Message";
 import ErrorElement from "@/components/smallComponents/ErrorElement";
+
 const MUTATION = `
   mutation ChatUpdate($id: ID!, $message: MessageInput!) {
     chatUpdate(_id: $id, message: $message) {
@@ -16,6 +17,7 @@ const MUTATION = `
     }
   }
 `;
+
 export default function Chat({
   id,
   prompt,
@@ -38,7 +40,7 @@ export default function Chat({
         },
         {
           role: "user",
-          content: `Please paraphrase and expand on '${title}'. This new text should be from the perspective of an  entrepreneur. Focus on a logical and clear tone, aiming to simplify complex IT concepts for a mainstream audience. Ensure that the summary is accessible and easy to understand, breaking down technical jargon into simpler terms where necessary. It has to be extremely thorough and detailed, with a minimum of 700 words. Write it in the language of the original article.`,
+          content: `Please paraphrase and expand on '${title}'. This new text should be from the perspective of an  entrepreneur. Focus on a logical and clear tone, aiming to simplify complex IT concepts for a mainstream audience. Ensure that the summary is accessible and easy to understand, breaking down technical jargon into simpler terms where necessary. It has to be extremely thorough and detailed, with a minimum of 700 words. Write it in the language of the original article. Add hashtags to the summary for better exposure of certain concepts, using the following format: #hashtag.`,
           id: uuidv4(),
           createdAt: new Date(),
         },
