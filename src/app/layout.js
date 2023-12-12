@@ -8,6 +8,7 @@ const notosans = Noto_Sans({
   subsets: ["latin"],
   weight: ["100", "300", "500", "700", "900"],
 });
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata = {
   title: "Eduardo Orozco Mendoza Portfolio",
@@ -29,15 +30,6 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <Script strategy="lazyOnload" id="gtm-script">
-        {`
-          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer','GTM-KDZ3MK63');
-          `}
-      </Script>
       <body>
         <NextAuthSessionProvider>
           <main
@@ -53,10 +45,17 @@ export default function RootLayout({ children }) {
             <Footer />
           </main>
         </NextAuthSessionProvider>
+        <SpeedInsights />
       </body>
-      {/* <Suspense>
-        <Analytics />
-      </Suspense> */}
+      <Script async strategy="lazyOnload" id="gtm-script">
+        {`
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-KDZ3MK63');
+          `}
+      </Script>
     </html>
   );
 }
