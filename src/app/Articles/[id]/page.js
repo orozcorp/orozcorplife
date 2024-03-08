@@ -1,7 +1,5 @@
 import parse from "html-react-parser";
 import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
 import { getData } from "@/lib/helpers/getData";
 const QUERY = `
   query BlogGetById($id: ID!) {
