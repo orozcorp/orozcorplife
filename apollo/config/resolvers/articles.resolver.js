@@ -1,5 +1,12 @@
 import { ObjectId } from "mongodb";
 import axios from "axios";
+import AWS from "aws-sdk";
+
+const lambda = new AWS.Lambda({
+  region: process.env.S3_REGIONL,
+  accessKeyId: process.env.S3_ACCESSKEYID,
+  secretAccessKey: process.env.S3_SECRETACCESSKEY,
+});
 export const articleResolvers = {
   Query: {
     chatGetAll: async (parent, args, { db }) => {
@@ -135,8 +142,7 @@ export const articleResolvers = {
     blogInsert: async (root, { input }, { db }) => {
       try {
         const date = new Date();
-        const futureDate = new Date(date);
-        futureDate.setFullYear(futureDate.getFullYear() + 20);
+        const futureDate = new Date().setFullYear(date.getFullYear() + 20);
         const { title, description, tags, content } = input;
         const toInsert = {
           title,
@@ -165,6 +171,23 @@ export const articleResolvers = {
               "messages.$.blogCreated": insertedId,
             },
           }
+        );
+        //TODO: Here step function to create the lambda prompt
+        const lambdaParams = [
+          { language: "English", expand: true },
+          { language: "Spanish", expand: false },
+          { language: "Spanish", expand: true },
+        ];
+
+        await Promise.all(
+          lambdaParams.map((params) =>
+            lambda
+              .invoke({
+                FunctionName: "Orozcorp-3versions",
+                Payload: JSON.stringify({ id: insertedId, ...params }),
+              })
+              .promise()
+          )
         );
         return {
           code: 200,
