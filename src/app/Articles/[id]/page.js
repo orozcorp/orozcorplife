@@ -1,6 +1,6 @@
 import parse from "html-react-parser";
 import { getData } from "@/lib/helpers/getData";
-import ScrollTop from "@/components/atoms/scrollTop";
+import ScrollTop from "../../../components/atoms/ScrollTop";
 import OtherArticles from "./OtherArticles";
 const QUERY = `
   query BlogGetById($id: ID!) {

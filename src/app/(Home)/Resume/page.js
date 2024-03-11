@@ -1,5 +1,4 @@
 /* eslint-disable react/no-unescaped-entities */
-import { header } from "@/components/smallComponents/TextComponents";
 import { getData } from "@/lib/helpers/getData";
 import Timeline from "@/components/smallComponents/Timeline";
 import Image from "next/image";
