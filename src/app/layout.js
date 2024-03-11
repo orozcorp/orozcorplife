@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import "./globals.css";
 import { Noto_Sans } from "next/font/google";
 import NextAuthSessionProvider from "@/providers/sessionProvider";
-import Script from "next/script";
+import { GoogleTagManager, GoogleAnalytics } from "@next/third-parties/google";
 const notosans = Noto_Sans({
   subsets: ["latin"],
   weight: ["100", "300", "500", "700", "900"],
@@ -15,11 +15,12 @@ export const metadata = {
   description:
     "Explore a Senior Developer's portfolio, expert in Javascript, React, Next.js, Node.js, MongoDB, showcasing dynamic, scalable web applications",
   keywords:
-    "Senior Developer, JavaScript, React, Next.js, Node.js, MongoDB, Web Development, Full Stack Development, Portfolio, Scalable Web Applications, Front-end Development, Back-end Development, Data Management",
+    "Eduardo Orozco, Orozcorp, Senior Developer, JavaScript, React, Next.js, Node.js, MongoDB, Web Development, Full Stack Development, Portfolio, Scalable Web Applications, Front-end Development, Back-end Development, Data Management",
 
   "apple-mobile-web-app-capable": "yes",
   fragment: "!",
   charset: "utf-8",
+  "og:image": "https://orozcorp.live/api/og",
 };
 
 export default function RootLayout({ children }) {
@@ -42,15 +43,8 @@ export default function RootLayout({ children }) {
         </NextAuthSessionProvider>
         <SpeedInsights />
       </body>
-      <Script async strategy="lazyOnload" id="gtm-script">
-        {`
-          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer','GTM-KDZ3MK63');
-          `}
-      </Script>
+      <GoogleTagManager gtmId="G-YJ1328V7SY" />
+      <GoogleAnalytics gaId="G-YJ1328V7SY" />
     </html>
   );
 }
