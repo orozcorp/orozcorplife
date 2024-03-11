@@ -13,7 +13,7 @@ const server = new ApolloServer({
   context,
   csrfPrevention: true,
   cache: "bounded",
-  plugins: [ApolloServerPluginLandingPageDisabled()],
+  // plugins: [ApolloServerPluginLandingPageDisabled()],
 });
 
 const handler = startServerAndCreateNextHandler(server, { context });

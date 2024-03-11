@@ -172,7 +172,6 @@ export const articleResolvers = {
             },
           }
         );
-        //TODO: Here step function to create the lambda prompt
         const lambdaParams = [
           { language: "English", expand: true },
           { language: "Spanish", expand: false },

@@ -16,12 +16,6 @@ export const metadata = {
     "Explore a Senior Developer's portfolio, expert in Javascript, React, Next.js, Node.js, MongoDB, showcasing dynamic, scalable web applications",
   keywords:
     "Senior Developer, JavaScript, React, Next.js, Node.js, MongoDB, Web Development, Full Stack Development, Portfolio, Scalable Web Applications, Front-end Development, Back-end Development, Data Management",
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
-    userScalable: 1,
-  },
 
   "apple-mobile-web-app-capable": "yes",
   fragment: "!",

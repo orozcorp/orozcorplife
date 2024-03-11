@@ -29,7 +29,7 @@
     "flowbite": "^1.7.0",
     "flowbite-react": "^0.4.10",
     "follow-redirects": "^1.15.5",
-    "framer-motion": "^10.13.0",
+    "framer-motion": "^11.0.8",
     "graphql": "^16.7.1",
     "html-react-parser": "^4.2.1",
     "ip": "^2.0.1",

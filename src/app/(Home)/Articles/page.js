@@ -1,5 +1,6 @@
 import { header } from "@/components/smallComponents/TextComponents";
 import Card from "@/components/smallComponents/Card";
+
 const QUERY = `
   query BlogGetAll($limit: Int) {
     blogGetAll(limit: $limit) {
@@ -14,16 +15,16 @@ const QUERY = `
 `;
 import { getData } from "@/lib/helpers/getData";
 export default async function Articles() {
-  const data = await getData({ query: QUERY, variables: { limit: 3 } });
+  const data = await getData({ query: QUERY, variables: { limit: 12 } });
   const blogs = data?.blogGetAll || [];
   return (
     <div
-      className="my-10 flex flex-col flex-nowrap justify-center items-center w-full"
+      className=" flex flex-col flex-nowrap justify-center items-center w-full mt-12"
       id="articles"
     >
-      <div className="font-thin my-4">MOST POPULAR</div>
+      <div className="font-thin">MOST POPULAR</div>
       <h2 className={header({ size: "h1", color: "primary" })}>ARTICLES</h2>
-      <div className="flex flex-row flex-wrap w-full justify-center md:justify-between items-stretch content-center my-8 gap-4">
+      <div className="flex flex-row flex-wrap w-screen justify-center md:justify-between items-stretch content-center p-4 my-4 gap-4">
         {blogs?.map((blog) => (
           <Card
             key={blog._id}
