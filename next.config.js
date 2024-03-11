@@ -9,13 +9,34 @@ module.exports = {
     return config;
   },
   images: {
-    domains: [
-      "stgfinal.s3.amazonaws.com",
-      "stgfinal.s3.us-east-1.amazonaws.com",
-      "orozcorp.s3.us-east-2.amazonaws.com",
-      "res.cloudinary.com",
-      "s3.amazonaws.com",
-      "s3.us-east-2.amazonaws.com",
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "stgfinal.s3.amazonaws.com",
+        pathname: "/**/*",
+      },
+      {
+        protocol: "https",
+        hostname: "s3.eu-central-1.amazonaws.com",
+        pathname: "/**/*",
+      },
+      {
+        protocol: "https",
+        hostname: "stgfinal.s3.us-east-1.amazonaws.com",
+        pathname: "/**/*",
+      },
+      {
+        protocol: "https",
+        hostname: "stgfinal.s3.us-east-2.amazonaws.com",
+        pathname: "/**/*",
+      },
+      {
+        protocol: "https",
+        hostname: "orozcorp.s3.us-east-2.amazonaws.com",
+        pathname: "/**/*",
+      },
+      { protocol: "https", hostname: "res.cloudinary.com", pathname: "/**/*" },
+      { protocol: "https", hostname: "s3.amazonaws.com", pathname: "/**/*" },
     ],
     unoptimized: false,
   },

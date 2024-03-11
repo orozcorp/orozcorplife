@@ -15,28 +15,30 @@ export default function Navbar() {
   const { data: session, status } = useSession();
   return (
     <>
-      <nav className="flex flex-row items-center justify-center bg-white shadow-lg shadow-zinc-600">
+      <nav className="flex flex-row items-center justify-center bg-white sticky top-0 z-50">
         <div className="w-11/12 flex flex-row items-center h-20 justify-between bg-opacity-0">
           <div className="flex justify-between items-center content-center bg-opacity-0">
             <div className="flex bg-opacity-0">
               <div className="ml-6 flex space-x-8 bg-opacity-0">
-                <div className="flex flex-row flex-wrap items-center justify-center gap-4">
-                  <Image
-                    src="https://s3.amazonaws.com/stgfinal/mensajes/BFKQuMxLcF5HDxb9v/1616334156061-790BDD13-A03A-4EF4-94E8-DB239ECC2AEC.jpeg"
-                    width={50}
-                    height={65}
-                    blurDataURL={rgbDataURL(0, 0, 0)}
-                    loading="lazy"
-                    style={{
-                      width: "50px",
-                      height: "65px",
-                      borderRadius: "50%",
-                      overflow: "hidden",
-                    }}
-                    alt="Orozcorp"
-                  />
-                  <div className="text-zinc-700 text-2xl">Eduardo Orozco</div>{" "}
-                </div>
+                <Link href="/" passHref>
+                  <div className="flex flex-row flex-wrap items-center justify-center gap-4">
+                    <Image
+                      src="https://s3.amazonaws.com/stgfinal/mensajes/BFKQuMxLcF5HDxb9v/1616334156061-790BDD13-A03A-4EF4-94E8-DB239ECC2AEC.jpeg"
+                      width={50}
+                      height={65}
+                      blurDataURL={rgbDataURL(0, 0, 0)}
+                      loading="lazy"
+                      style={{
+                        width: "50px",
+                        height: "65px",
+                        borderRadius: "50%",
+                        overflow: "hidden",
+                      }}
+                      alt="Orozcorp"
+                    />
+                    <div className="text-zinc-700 text-2xl">Eduardo Orozco</div>{" "}
+                  </div>
+                </Link>
               </div>
             </div>
           </div>
@@ -46,7 +48,7 @@ export default function Navbar() {
                 <div className="ml-6 flex space-x-8 text-zinc-700">
                   {!session ? (
                     <>
-                      {/* <Link href="/#articles">Articles</Link> */}
+                      <Link href="/#articles">Articles</Link>
                       <Link href="/#portfolio">Portfolio</Link>
                       <Link href="/#resume">Resume</Link>
                       <Link href="/#contact">Contact</Link>

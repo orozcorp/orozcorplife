@@ -123,26 +123,6 @@ export default async function Resume() {
         </section>
 
         <section className="mb-8">
-          <h2 className="text-2xl font-semibold border-b-2 pb-2">EXPERIENCE</h2>
-          <div className="mt-4">
-            <div className="mb-4">
-              <h3 className="text-xl font-semibold">
-                SENIOR FULL STACK DEVELOPER & CHIEF OPERATING OFFICER - ORMEN
-                WORLD WIDE
-              </h3>
-              <p className="text-gray-600">JAN 2012 TO FEB 2023</p>
-              <p className="mt-2 text-gray-700">
-                Joined a burgeoning clothing company, swiftly progressing
-                through various roles to gain comprehensive knowledge of
-                operations and full-stack development. Coordinated a
-                high-performing team of 40 suppliers and 20 staff members...
-              </p>
-            </div>
-            {/* Add more experiences as needed */}
-          </div>
-        </section>
-
-        <section className="mb-8">
           <h2 className="text-2xl font-semibold border-b-2 pb-2">EDUCATION</h2>
           <p className="mt-4 text-gray-700">
             ITESM CSF - Ciudad de Mexico — Bachelor in Entrepreneurship - Aug
