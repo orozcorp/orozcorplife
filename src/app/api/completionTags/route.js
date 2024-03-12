@@ -15,7 +15,7 @@ export async function POST(req) {
   // Extract the `prompt` from the body of the request
   const { prompt } = await req.json();
   const response = await openai.createChatCompletion({
-    model: "gpt-4-turbo-preview",
+    model: "gpt-4",
     stream: true,
     messages: [
       {
