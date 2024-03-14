@@ -1,7 +1,7 @@
 import Link from "next/link";
 export default function Card({ img, title, description, link }) {
   return (
-    <div className="w-80 bg-white border  rounded-lg shadow-md shadow-zinc-800 p-4 flex flex-col flex-nowrap justify-center">
+    <div className="w-80 bg-white border  rounded-lg   p-4 flex flex-col flex-nowrap justify-center">
       <Link href={link}>
         <h3 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">
           {title}

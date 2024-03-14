@@ -9,7 +9,10 @@ const notosans = Noto_Sans({
   weight: ["100", "300", "500", "700", "900"],
 });
 import { SpeedInsights } from "@vercel/speed-insights/next";
-
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 export const metadata = {
   title: "Eduardo Orozco Mendoza Portfolio",
   description:

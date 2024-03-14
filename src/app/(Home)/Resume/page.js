@@ -29,7 +29,7 @@ export default async function Resume() {
   const resume = data?.getResume || [];
   return (
     <div
-      className="my-10 flex flex-col flex-nowrap justify-center items-center w-full "
+      className="py-10 flex flex-col flex-nowrap justify-center items-center"
       id="resume"
     >
       <div className="w-full flex flex-row flex-wrap items-center"></div>

@@ -20,17 +20,17 @@ export default async function Portfolio() {
   const portfolios = data?.getPortfolios || [];
   return (
     <div
-      className="my-10 flex flex-col flex-nowrap justify-center items-center w-full "
+      className="my-10 flex flex-col flex-nowrap justify-center items-center max-w-[100vw] "
       id="portfolio"
     >
       <div className="font-thin my-4">MOST RECENT</div>
-      <h2 className={`${header({ size: "h1", color: "primary" })} mb-8`}>
+      <h2 className={`${header({ size: "h1", color: "primary" })} `}>
         PROJECTS
       </h2>
       <div className="w-screen">
-        <div className="w-full overflow-x-scroll flex flex-row flex-nowrap justify-center mx-14 my-20 h-screen">
+        <div className="w-screen overflow-x-scroll flex flex-row flex-nowrap justify-center px-6 my-6 h-screen">
           <div
-            className="overflow-x-scroll flex gap-20 h-full "
+            className="overflow-x-scroll flex gap-20 h-full justify-start items-center"
             style={{ scrollBehavior: "smooth" }}
           >
             {portfolios?.map((portfolio) => (

@@ -188,7 +188,7 @@ export default function loading() {
           <div className="hex-brick h3"></div>
         </div>
       </div>
-      <h1>Loading</h1>
+      <h1 className="animate-pulse">Loading</h1>
     </div>
   );
 }

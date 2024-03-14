@@ -6,7 +6,7 @@ import { rgbDataURL } from "@/lib/helpers/blur";
 export default function Timeline({ timeline }) {
   const [clicked, setClicked] = useState("");
   return (
-    <div className="p-5 mb-4 w-80 md:w-full border border-gray-100 rounded-lg bg-gray-50my-8">
+    <div className="p-5 mb-4 w-80 md:w-full border border-gray-100 rounded-lg bg-white my-8">
       <time className="text-lg font-semibold text-gray-900 dark:text-white">
         {format_date(timeline?.dateStarted)} -{" "}
         {format_date(timeline?.dateEnded)}

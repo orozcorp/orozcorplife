@@ -15,7 +15,7 @@ export default function Navbar() {
   const { data: session, status } = useSession();
   return (
     <>
-      <nav className="flex flex-row items-center justify-center bg-white sticky top-0 z-50">
+      <nav className="flex flex-row items-center justify-center darkBackground sticky top-0 z-50">
         <div className="w-11/12 flex flex-row items-center h-20 justify-between bg-opacity-0">
           <div className="flex justify-between items-center content-center bg-opacity-0">
             <div className="flex bg-opacity-0">
@@ -28,15 +28,10 @@ export default function Navbar() {
                       height={65}
                       blurDataURL={rgbDataURL(0, 0, 0)}
                       loading="lazy"
-                      style={{
-                        width: "50px",
-                        height: "65px",
-                        borderRadius: "50%",
-                        overflow: "hidden",
-                      }}
+                      className="w-16 h-16 rounded-full"
                       alt="Orozcorp"
                     />
-                    <div className="text-zinc-700 text-2xl">Eduardo Orozco</div>{" "}
+                    <div className="text-white text-2xl">Eduardo Orozco</div>{" "}
                   </div>
                 </Link>
               </div>
@@ -45,7 +40,7 @@ export default function Navbar() {
           {width > 1000 && (
             <div className="flex justify-between items-center content-center mr-4">
               <div className="flex">
-                <div className="ml-6 flex space-x-8 text-zinc-700">
+                <div className="ml-6 flex space-x-8 text-white">
                   {!session ? (
                     <>
                       <Link href="/#articles">Articles</Link>
@@ -61,7 +56,7 @@ export default function Navbar() {
                         <div>
                           <button
                             onClick={() => setIsOpen(!isOpen)}
-                            className="inline-flex justify-center w-full rounded-md bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
+                            className="inline-flex justify-center w-full rounded-md  text-sm font-medium text-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
                           >
                             Edit Info
                           </button>
@@ -118,7 +113,7 @@ export default function Navbar() {
                     style={{
                       width: "20px",
                       height: "20px",
-                      color: "rgb(63 63 70)",
+                      color: "#fff",
                     }}
                     onClick={() => setShowMenu(!showMenu)}
                   />
