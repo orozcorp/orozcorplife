@@ -4,7 +4,7 @@ export const button = tv({
   base: "font-semibold  text-base p-2 px-4 rounded-full active:opacity-80 text-xs text-center focus:ring-4 focus:outline-none",
   variants: {
     color: {
-      primary: "bg-sky-800 text-white hover:bg-sky-600 focus:ring-sky-800",
+      primary: "bg-zinc-800 text-white hover:bg-zinc-600 focus:ring-zinc-800",
       secondary:
         "bg-sky-400 text-white hover:bg-sky-200 hover:text-sky-800 focus:ring-sky-400",
       transparent:

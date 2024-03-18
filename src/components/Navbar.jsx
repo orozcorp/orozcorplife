@@ -56,7 +56,7 @@ export default function Navbar() {
                         <div>
                           <button
                             onClick={() => setIsOpen(!isOpen)}
-                            className="inline-flex justify-center w-full rounded-md  text-sm font-medium text-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
+                            className="inline-flex justify-center w-full rounded-md  text-sm font-medium text-white hover:bg-white hover:text-zinc-950 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-zinc-500"
                           >
                             Edit Info
                           </button>

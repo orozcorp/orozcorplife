@@ -41,8 +41,8 @@ export default async function Articles() {
         <WriteArticle prompts={prompts} />
       </div>
       <div className="overflow-x-auto shadow-md sm:rounded-lg my-8 w-full">
-        <table className="w-full text-sm text-left text-gray-500">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+        <table className="w-full text-sm text-left text-zinc-500">
+          <thead className="text-xs text-zinc-900 uppercase bg-zinc-50">
             <tr>
               <th scope="col" className="px-6 py-3">
                 Title
@@ -66,7 +66,7 @@ export default async function Articles() {
           </thead>
           <tbody>
             {blogs?.map((blog) => (
-              <tr key={blog._id} className="border-b border-gray-200">
+              <tr key={blog._id} className="border-b border-zinc-200">
                 <td className="px-6 py-4">{blog.title}</td>
                 <td className="px-6 py-4 ">{blog.description}</td>
                 <td className="px-6 py-4 ">{blog.article.tags?.join(", ")}</td>

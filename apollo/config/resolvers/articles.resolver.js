@@ -157,7 +157,7 @@ export const articleResolvers = {
           images: [],
         };
         const { insertedId } = await db.collection("Blog").insertOne(toInsert);
-        const update = await db.collection("Conversations").updateOne(
+        const update = await db.collection("Chat").updateOne(
           {
             _id: new ObjectId(input.chatId),
             messages: { $elemMatch: { id: input.messageId } },
@@ -389,29 +389,6 @@ export const articleResolvers = {
           .updateOne(
             { _id: new ObjectId(_id) },
             { $push: { "article.tags": tag } }
-          );
-        return {
-          code: 200,
-          success: true,
-          message: "Blog publicado exitosamente",
-        };
-      } catch (error) {
-        console.log(error);
-        return {
-          code: error.extensions.response.status,
-          success: false,
-          message: error.extensions.response.body,
-        };
-      }
-    },
-    blogFix: async (root, args, { db }) => {
-      try {
-        const blogs = await db
-          .collection("Blog")
-          .updateMany(
-            {},
-            { $set: { "article.authors": ["Eduardo Orozco Mendoza"] } },
-            { multi: true }
           );
         return {
           code: 200,
