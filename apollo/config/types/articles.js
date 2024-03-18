@@ -82,6 +82,7 @@ export const article = gql`
     blogRemoveTag(_id: ID!, tag: String!): GeneralResponse
     blogAddTag(_id: ID!, tag: String!): GeneralResponse
     blogUpdateContent(_id: ID!, content: String!): GeneralResponse
+    blogFix: GeneralResponse
   }
   type Query {
     blogGetAll(limit: Int): [Blog]

@@ -151,7 +151,7 @@ export const articleResolvers = {
             publishedTime: date,
             modifiedTime: date,
             expirationTime: futureDate,
-            authors: ["https://www.orozcorp.io"],
+            authors: ["Eduardo Orozco Mendoza"],
             tags,
           },
           images: [],
@@ -389,6 +389,29 @@ export const articleResolvers = {
           .updateOne(
             { _id: new ObjectId(_id) },
             { $push: { "article.tags": tag } }
+          );
+        return {
+          code: 200,
+          success: true,
+          message: "Blog publicado exitosamente",
+        };
+      } catch (error) {
+        console.log(error);
+        return {
+          code: error.extensions.response.status,
+          success: false,
+          message: error.extensions.response.body,
+        };
+      }
+    },
+    blogFix: async (root, args, { db }) => {
+      try {
+        const blogs = await db
+          .collection("Blog")
+          .updateMany(
+            {},
+            { $set: { "article.authors": ["Eduardo Orozco Mendoza"] } },
+            { multi: true }
           );
         return {
           code: 200,
