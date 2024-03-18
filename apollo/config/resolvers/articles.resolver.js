@@ -186,6 +186,7 @@ export const articleResolvers = {
               .promise()
           )
         );
+        console.log("Lambda invoked");
         return {
           code: 200,
           success: true,
