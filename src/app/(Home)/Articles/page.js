@@ -1,6 +1,6 @@
 import { header } from "@/components/smallComponents/TextComponents";
 import Card from "@/components/smallComponents/Card";
-import { blogGetAll } from "../actions/home";
+import { blogGetAll } from "@/server/blog";
 import { Suspense } from "react";
 export default async function Articles() {
   const blogs = (await blogGetAll({ limit: 12 })) || [];

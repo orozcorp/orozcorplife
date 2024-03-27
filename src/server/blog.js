@@ -1,27 +1,21 @@
 "use server";
 import { fetchFromMongo } from "@/lib/mongoAPI";
+import { ObjectId } from "mongodb";
 
-export async function getResume() {
+export async function blogGetById({ id }) {
   try {
-    const { documents: resume } = await fetchFromMongo("Resume", "find", {
-      filter: {},
+    const { document: blog } = await fetchFromMongo("Blog", "findOne", {
+      filter: { _id: new ObjectId(id) },
     });
-    return resume;
+    return blog;
   } catch (error) {
     console.error(error);
-    return [];
-  }
-}
-
-export async function getPortfolios() {
-  try {
-    const { documents: resume } = await fetchFromMongo("Portfolio", "find", {
-      filter: {},
-    });
-    return resume;
-  } catch (error) {
-    console.error(error);
-    return [];
+    return {
+      code: 400,
+      message: "Error al obtener Resume",
+      success: false,
+      data: null,
+    };
   }
 }
 

@@ -1,6 +1,6 @@
 import Mockup from "@/components/smallComponents/Mockup";
 import { header } from "@/components/smallComponents/TextComponents";
-import { getPortfolios } from "../actions/home";
+import { getPortfolios } from "@/server/portfolio";
 import { Suspense } from "react";
 export default async function Portfolio() {
   const portfolios = (await getPortfolios()) || [];

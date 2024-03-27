@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import { getResume } from "../actions/home";
+import { getResume } from "@/server/resume";
 import Timeline from "@/components/smallComponents/Timeline";
 import Image from "next/image";
 import { rgbDataURL } from "@/lib/helpers/blur";
