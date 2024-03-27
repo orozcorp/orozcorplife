@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { rgbDataURL } from "@/lib/helpers/blur";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 export default function TrabajoModal({ isOpen, onClose, imageUrl }) {
   if (!isOpen) return null;
 

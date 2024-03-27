@@ -43,3 +43,32 @@ export async function blogGetAll({ limit }) {
     };
   }
 }
+
+export async function getBlog({ id }) {
+  try {
+    const { document: blog } = await fetchFromMongo("Blog", "findOne", {
+      filter: { _id: new ObjectId(id) },
+    });
+    return blog;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+export async function updateBlog({ id, update }) {
+  try {
+    const updated = await fetchFromMongo("Blog", "updateOne", {
+      filter: { _id: new ObjectId(id) },
+      update: {
+        $set: {
+          ...update,
+        },
+      },
+    });
+    return updated;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}

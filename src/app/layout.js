@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import "./globals.css";
-import { Toaster } from "@/components/ui/sonner";
+import { Toaster } from "@/components/ui/toaster";
 import { Noto_Sans } from "next/font/google";
 import NextAuthSessionProvider from "@/providers/sessionProvider";
 import { GoogleTagManager, GoogleAnalytics } from "@next/third-parties/google";

@@ -1,28 +1,11 @@
 import { header } from "@/components/smallComponents/TextComponents";
-import { getData } from "@/lib/helpers/getData";
 import Carousel from "./Carousel";
 import { format_date } from "@/lib/helpers/formatters";
 import Portfolio from "@/app/(Home)/Portfolio/page";
-const QUERY = `
-  query GetPortfolioById($getPortfolioByIdId: ID!) {
-    getPortfolioById(id: $getPortfolioByIdId) {
-      _id
-      active
-      company
-      date
-      images
-      description
-      project
-    }
-  }
-`;
+import { getPortfolioById } from "@/server/portfolio";
 export default async function Project({ params }) {
   const { id } = params;
-  const query = await getData({
-    query: QUERY,
-    variables: { getPortfolioByIdId: id },
-  });
-  const portfolio = query?.getPortfolioById;
+  const portfolio = await getPortfolioById({ id });
   return (
     <>
       <main className="flex flex-col flex-nowrap w-full justify-center items-center">

@@ -75,27 +75,27 @@ export default function Navbar() {
                         <div className="py-1" role="menu">
                           <Link
                             href="/Admin/Articles"
-                            onClick={() => setIsOpen(hidden)}
+                            onClick={() => setIsOpen("hidden")}
                             className="text-gray-700 block px-4 py-2 text-sm"
                           >
                             Edit Articles
                           </Link>
                           <Link
-                            onClick={() => setIsOpen(hidden)}
+                            onClick={() => setIsOpen("hidden")}
                             href="/Admin/Portfolio"
                             className="text-gray-700 block px-4 py-2 text-sm"
                           >
                             Edit Portfolio
                           </Link>
                           <Link
-                            onClick={() => setIsOpen(hidden)}
+                            onClick={() => setIsOpen("hidden")}
                             href="/Admin/Resume"
                             className="text-gray-700 block px-4 py-2 text-sm"
                           >
                             Edit Resume
                           </Link>
                           <Link
-                            onClick={() => setIsOpen(hidden)}
+                            onClick={() => setIsOpen("hidden")}
                             href="/Admin/Contact"
                             className="text-gray-700 block px-4 py-2 text-sm"
                           >

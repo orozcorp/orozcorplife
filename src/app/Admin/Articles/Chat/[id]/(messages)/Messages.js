@@ -3,8 +3,7 @@ import { useChat } from "ai/react";
 import { useState, useRef, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { postData } from "@/lib/helpers/getData";
-import Toast from "@/components/smallComponents/Toast";
-import Message from "./Message";
+import ChatMessage from "@/components/atoms/ChatBubble";
 
 const MUTATION = `
   mutation ChatUpdate($id: ID!, $message: MessageInput!) {
@@ -22,10 +21,8 @@ export default function Chat({
   title,
   messages: initialMessages2,
 }) {
-  const [errorMutation, setErrorMutation] = useState("");
-  const [errorTags, setErrorTags] = useState("pending");
-  const [errorContent, setErrorContent] = useState("");
   const chatContainerRef = useRef(null);
+  const [errorMutation, setErrorMutation] = useState("");
   const { messages, input, handleInputChange, handleSubmit, isLoading } =
     useChat({
       id,
@@ -75,30 +72,18 @@ export default function Chat({
   }, [messages]);
   return (
     <>
-      {errorTags !== "pending" && (
-        <Toast message={errorTags} onClick={() => setErrorTags("pending")} />
-      )}
-      {errorContent !== "" && (
-        <Toast message={errorContent} onClick={() => setErrorContent("")} />
-      )}
-      {errorMutation !== "" && (
-        <Toast message={errorMutation} onClick={() => setErrorMutation("")} />
-      )}
       <div className="drop-shadow-md shadow-slate-800 w-full border rounded h-[70vh] overflow-y-auto">
         <div
           ref={chatContainerRef}
-          className="flex flex-col flex-nowrap justify-start overflow-y-auto w-full self-start h-full"
+          className="flex flex-col flex-nowrap justify-start overflow-y-auto w-full self-start h-full gap-2"
         >
-          {messages.map((m) => (
-            <Message
+          {messages.slice(2).map((m) => (
+            <ChatMessage
               key={m.id}
+              className="whitespace-pre-wrap"
               m={m}
               isLoading={isLoading}
-              title={title}
-              _id={id}
-              setErrorMutation={setErrorMutation}
-              setErrorTags={setErrorTags}
-              setErrorContent={setErrorContent}
+              firstContent={m.content === "Give me the content to summarize"}
             />
           ))}
         </div>

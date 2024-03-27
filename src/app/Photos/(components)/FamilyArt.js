@@ -1,23 +1,15 @@
-import { getData } from "@/lib/helpers/getData";
+"use client";
+import { useQuery } from "@tanstack/react-query";
+import { getTrabajos } from "@/server/users";
 import Trabajo from "./Trabajo";
-const QUERY = `
-  query GetTrabajos($idUser: String!) {
-    getTrabajos(idUser: $idUser) {
-      _id
-      url
-      userId
-      userName
-      date
-      status
-    }
-  }
-`;
-export default async function FamilyArt({ user }) {
-  const data = await getData({
-    query: QUERY,
-    variables: { idUser: user.value },
+
+export default function FamilyArt({ user }) {
+  const { data: trabajos } = useQuery({
+    queryKey: ["trabajos", { idUser: user._id }],
+    queryFn: async () => await getTrabajos({ idUser: user._id }),
+    staleTime: 0,
+    initialData: [],
   });
-  const trabajos = data?.getTrabajos || [];
   const name = user.label
     .toLowerCase()
     .split(" ")

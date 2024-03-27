@@ -13,3 +13,24 @@ export async function getPortfolios() {
     return [];
   }
 }
+
+export async function getPortfolioById({ id }) {
+  try {
+    const { document: portfolio } = await fetchFromMongo(
+      "Portfolio",
+      "findOne",
+      {
+        filter: { _id: new ObjectId(id) },
+      }
+    );
+    return portfolio;
+  } catch (error) {
+    console.error(error);
+    return {
+      code: 400,
+      message: "Error al obtener Portfolio",
+      success: false,
+      data: null,
+    };
+  }
+}

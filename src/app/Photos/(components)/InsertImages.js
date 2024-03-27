@@ -16,7 +16,6 @@ const MUTATION = `
 export default function InsertImages({ userId }) {
   const [loading, setLoading] = useState(false);
   const [percent, setPercent] = useState(0);
-  const [keys, setKeys] = useState([]);
   const router = useRouter();
   const pathname = usePathname();
   const blogUpdate = async (e) => {

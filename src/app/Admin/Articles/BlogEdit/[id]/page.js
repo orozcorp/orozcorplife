@@ -1,9 +1,77 @@
-import Blog from "./(components)/Blog";
-export default async function page({ params }) {
+"use client";
+import { getBlog } from "@/server/blog";
+import Image from "next/image";
+import { Badge } from "@/components/ui/badge";
+import CopyButton from "@/components/simpleFunctions/CopyButton";
+import BlogPost from "./Blog";
+import { useQuery } from "@tanstack/react-query";
+export default function Blog({ params }) {
   const { id } = params;
+  const { data: blog } = useQuery({
+    queryKey: ["blog", id],
+    queryFn: async () => await getBlog({ id }),
+    staleTime: 0,
+    intialData: {},
+  });
   return (
-    <>
-      <Blog id={id} />
-    </>
+    <div className="flex flex-row flex-wrap gap-3 justify-between">
+      <div className="max-w-xl flex flex-col flex-nowrap gap-4">
+        <div className="flex flex-row flex-wrap gap-2">
+          {blog?.image && (
+            <Image
+              src={blog.image}
+              alt="Blog Image"
+              width={200}
+              height={200}
+              className="rounded shadow-lg"
+            />
+          )}
+          <div className="flex flex-row flex-wrap gap-2 flex-1">
+            {blog?.tags?.map((tag, index) => (
+              <Badge key={index}>{tag}</Badge>
+            ))}
+          </div>
+        </div>
+        <div className="border p-3 shadow-lg rounded text-justify">
+          <h2 className="text-2xl font-bold mb-4">Facebook Personal</h2>
+          <p id="fbPersonal">{blog?.facebookPersonal}</p>
+          <CopyButton
+            elementId="fbPersonal"
+            buttonText="Copy Fb Personal"
+            className="my-4"
+          />
+        </div>
+        <div className="border p-3 shadow-lg rounded text-justify">
+          <h2 className="text-2xl font-bold mb-4">Facebook Business</h2>
+          <p id="fbBusiness">{blog?.facebookBusiness}</p>
+          <CopyButton
+            elementId="fbBusiness"
+            buttonText="Copy Fb Business"
+            className="my-4"
+          />
+        </div>
+      </div>
+      <BlogPost blog={blog} />
+      <div className="flex flex-row flex-wrap gap-2">
+        <div className="max-w-2xl text-justify border p-3 shadow-lg rounded ">
+          <h2 className="text-2xl font-bold mb-4">Instagram</h2>
+          <p id="insta">{blog?.instagramPost}</p>
+          <CopyButton
+            elementId="insta"
+            buttonText="Copy Insta"
+            className="my-4"
+          />
+        </div>
+        <div className="max-w-2xl text-justify border p-3 shadow-lg rounded ">
+          <h2 className="text-2xl font-bold mb-4">Linked In</h2>
+          <p id="linkedIn">{blog?.linkedInPost}</p>
+          <CopyButton
+            elementId="linkedIn"
+            buttonText="Copy LinkedIn"
+            className="my-4"
+          />
+        </div>
+      </div>
+    </div>
   );
 }
