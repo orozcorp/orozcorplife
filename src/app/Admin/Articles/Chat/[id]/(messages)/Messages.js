@@ -38,7 +38,7 @@ export default function Chat({
         },
         {
           role: "user",
-          content: `Please paraphrase and expand on '${title}'. This new text should be from the perspective of an  entrepreneur. Focus on a logical and clear tone, aiming to simplify complex IT concepts for a mainstream audience. Ensure that the summary is accessible and easy to understand, breaking down technical jargon into simpler terms where necessary. It has to be extremely thorough and detailed, with a minimum of 1000 words. Write it in the language of the original article. Add hashtags to the summary for better exposure of certain concepts, using the following format: #hashtag. Be sure to quote any references used. The response should be in one line without line breaks. Add as many different tags as you need. Content: ${title}`,
+          content: `Please paraphrase and expand on '${title}'. This new text should be from the perspective of an  entrepreneur. Focus on a logical and clear tone, aiming to simplify complex IT concepts for a mainstream audience. Ensure that the summary is accessible and easy to understand, breaking down technical jargon into simpler terms where necessary. It has to be extremely thorough and detailed, with a minimum of 1000 words. Write it in the language of the original article. Add hashtags to the summary for better exposure of certain concepts, using the following format: #hashtag. Be sure to quote any references used. The response should be in one line without line breaks. Add as many different tags as you need. The topic will be: ${title}`,
           id: uuidv4(),
           createdAt: new Date(),
         },

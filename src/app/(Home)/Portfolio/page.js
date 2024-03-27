@@ -1,23 +1,9 @@
 import Mockup from "@/components/smallComponents/Mockup";
 import { header } from "@/components/smallComponents/TextComponents";
-import { getData } from "@/lib/helpers/getData";
-
-const QUERY = `
-  query GetPortfolios {
-    getPortfolios {
-      _id
-      company
-      images
-      project
-      description
-      date
-    }
-  }
-`;
-
+import { getPortfolios } from "../actions/home";
+import { Suspense } from "react";
 export default async function Portfolio() {
-  const data = await getData({ query: QUERY });
-  const portfolios = data?.getPortfolios || [];
+  const portfolios = (await getPortfolios()) || [];
   return (
     <div
       className="my-10 flex flex-col flex-nowrap justify-center items-center max-w-[100vw] "
@@ -33,15 +19,17 @@ export default async function Portfolio() {
             className="overflow-x-scroll flex gap-20 h-full justify-start items-center"
             style={{ scrollBehavior: "smooth" }}
           >
-            {portfolios?.map((portfolio) => (
-              <Mockup
-                key={portfolio?._id}
-                img={portfolio?.images[0]}
-                title={portfolio?.project}
-                description={portfolio?.company}
-                link={`/Projects/${portfolio?._id}`}
-              />
-            ))}
+            <Suspense fallback={<div>Loading projects...</div>}>
+              {portfolios?.map((portfolio) => (
+                <Mockup
+                  key={portfolio?._id}
+                  img={portfolio?.images[0]}
+                  title={portfolio?.project}
+                  description={portfolio?.company}
+                  link={`/Projects/${portfolio?._id}`}
+                />
+              ))}
+            </Suspense>
           </div>
         </div>
       </div>

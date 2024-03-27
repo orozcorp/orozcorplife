@@ -1,32 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
-import { getData } from "@/lib/helpers/getData";
+import { getResume } from "../actions/home";
 import Timeline from "@/components/smallComponents/Timeline";
 import Image from "next/image";
 import { rgbDataURL } from "@/lib/helpers/blur";
 
-const QUERY = `
-  query GetResume {
-    getResume {
-      active
-      company
-      logo
-      dateEnded
-      dateStarted
-      _id
-      activity {
-        activity
-        activityDetail
-        dateEnded
-        dateStarted
-        position
-      }
-    }
-  }
-`;
-
 export default async function Resume() {
-  const data = await getData({ query: QUERY });
-  const resume = data?.getResume || [];
+  const resume = (await getResume()) || [];
   return (
     <div
       className="py-10 flex flex-col flex-nowrap justify-center items-center"

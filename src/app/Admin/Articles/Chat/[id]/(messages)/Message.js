@@ -90,7 +90,6 @@ export default function Message({
   ]);
   useEffect(() => {
     if (!generating) return;
-    // Scroll the chat container to the bottom whenever messages change
     chatContainerRef.current.scrollTop =
       chatContainerRef.current.scrollHeight + 10;
   }, [generating]);
