@@ -72,28 +72,3 @@ export async function updateBlog({ id, update }) {
     throw error;
   }
 }
-
-export async function blogGetAllNL() {
-  try {
-    const props = {
-      pipeline: [
-        { $match: { facebookBusiness: { $exists: false } } },
-        { $sort: { "article.publishedTime": -1 } },
-      ],
-    };
-    const { documents: blogs } = await fetchFromMongo(
-      "Blog",
-      "aggregate",
-      props
-    );
-    return blogs;
-  } catch (error) {
-    console.error(error);
-    return {
-      code: 400,
-      message: "Error al obtener Resume",
-      success: false,
-      data: null,
-    };
-  }
-}
