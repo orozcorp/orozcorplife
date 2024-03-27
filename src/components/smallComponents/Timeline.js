@@ -3,6 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { format_date } from "@/lib/helpers/formatters";
 import { rgbDataURL } from "@/lib/helpers/blur";
+import { AspectRatio } from "../ui/aspect-ratio";
 export default function Timeline({ timeline }) {
   const [clicked, setClicked] = useState("");
   return (
@@ -12,15 +13,18 @@ export default function Timeline({ timeline }) {
         {format_date(timeline?.dateEnded)}
       </time>
       <div className="flex flex-row flex-wrap justify-start items-center">
-        <Image
-          className="w-12 h-12 mb-3 mr-3 rounded-full sm:mb-0 object-cover object-center aspect-square"
-          src={timeline?.logo}
-          alt={timeline?.company}
-          width={48}
-          height={48}
-          blurDataURL={rgbDataURL(0, 0, 0)}
-          loading="lazy"
-        />
+        <div className="w-8 h-8 m-4">
+          <AspectRatio ratio={1 / 1}>
+            <Image
+              className="rounded-full object-cover object-center"
+              src={timeline?.logo}
+              alt={timeline?.company}
+              blurDataURL={rgbDataURL(0, 0, 0)}
+              fill
+              loading="lazy"
+            />
+          </AspectRatio>
+        </div>
         <div className="text-base font-normal">
           <span className="font-medium text-2xl text-gray-900 dark:text-white">
             {timeline?.company}
