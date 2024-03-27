@@ -16,17 +16,17 @@ export async function POST(req) {
       {
         role: "user",
         content: `
-          Ayúdame a capturar la esencia de este tema para nuestra comunidad en Facebook desde mi página personal.
-          Quiero compartir un resumen intrigante que incite a nuestra audiencia a explorar más sobre nuestro producto/artículo en el blog.
-          El mensaje debe ser en primera persona, reflejando una conversación amena, feliz y emocionante con nuestros seguidores.
-          Es esencial comunicar el valor y la relevancia del contenido, enfatizando cómo puede beneficiar a los emprendedores en su búsqueda de productividad y eficiencia.
-          No olvides incluir los hashtags #emprendedor #productividad #gestión #luz #led para maximizar nuestro alcance.
-          La publicación debe ser en español de México, con un toque local que resuene con nuestra audiencia y transmita entusiasmo sobre el producto o artículo.
-          Reduciendo al maximo el texto,
-          Este es el mensaje que quiero compartir:
-          ${prompt}
-
-
+            ###Instrucción###
+            Genera una publicación de Facebook en primera persona desde mi página personal que capte la esencia de nuestro producto/artículo.
+            El mensaje debe ser ameno, feliz y emocionante, incentivando a los seguidores a explorar más sobre el tema en nuestro blog.
+            Tiene que ser captivante desde el primer párrafo.
+            ###Detalles###
+            - La publicación debe reflejar conversación amena y entusiasmo.
+            - Debe comunicar el valor y la relevancia del contenido, mostrando cómo beneficia a emprendedores en productividad y eficiencia.
+            - Incluir los hashtags #emprendedor #productividad #gestión #luz #led.
+            - Ajustarse al español de México con un toque local que resuene con la audiencia.
+            ###Mensaje###
+            ${prompt}
         `,
       },
     ],

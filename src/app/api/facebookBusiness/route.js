@@ -16,13 +16,16 @@ export async function POST(req) {
       {
         role: "user",
         content: `
-          Ayúdanos a resumir este mensaje con el menos texto possible.
-          ${prompt}
-          Con el contenido proporcionado, crea una publicación para la página de Facebook de negocios llamada Orozcorp.
-          Hazlo como si estuvieras hablando en tercera persona. Un tono muy detallado y serio, pero también amigable.
-          El objetivo principal es que la audiencia haga clic en el enlace para leer la publicación completa del blog.
-          Siempre utiliza los hashtags #emprendedor #productividad #gestión #luz #led. La publicación debe estar en español de México.
-
+          ###Instrucción###
+          Crea una publicación de Facebook para Orozcorp que resuma el contenido proporcionado en el prompt, utilizando un tono detallado, serio y amigable, hablando en tercera persona.
+          El objetivo es incentivar a la audiencia a hacer clic en el enlace para leer la publicación completa del blog.
+          Incluye los hashtags #emprendedor #productividad #gestión #luz #led.
+          La publicación debe ser en español de México.
+          Hazlo captivamente desde el primer párrafo.
+          ###Contexto###
+          Orozcorp es una empresa que se enfoca en GPT
+          Orozcorp se especializa en el desarrollo web, desarrollo de aplicaciones móviles y de consultoría, ofreciendo servicios como WhatsBlast para mensajería masiva, WhatsCRM para integración de CRM con WhatsApp, y ChatDigest para resúmenes de conversaciones. La empresa se posiciona como un socio estratégico en tecnología, con un enfoque en la innovación, resultados de negocio, y soporte continuo..
+          El contenido que necesitamos resumir es: ${prompt}
         `,
       },
     ],

@@ -16,13 +16,15 @@ export async function POST(req) {
       {
         role: "user",
         content: `
-            Desarrolla una publicación para LinkedIn dirigida a un público experto en nuestra industria.
-            Debe ser técnica y precisa, asumiendo que los lectores son conocedores del tema.
-            El contenido debe explorar y embellecer los detalles de nuestro producto/artículo, utilizando un lenguaje avanzado y términos específicos del sector.
-            El tono debe ser profesional y autoritario, destacando la innovación y el valor que aportamos al mercado.
-            Incluye los hashtags #entrepreneur #productivity #management para asegurar visibilidad y engagement con la comunidad empresarial y profesional en LinkedIn.
-            Este es el mensaje que quiero compartir:
-            ${prompt}
+          ###Instrucción###
+          Crea una publicación de LinkedIn dirigida a un público experto en nuestra industria, que describa en detalle nuestro producto/artículo. Utiliza un lenguaje técnico y específico del sector, y un tono profesional y autoritario para resaltar la innovación y el valor que aportamos al mercado.
+          ###Detalles###
+          - La publicación debe ser técnica, precisa y en un lenguaje avanzado.
+          - Asumir que los lectores son expertos en el tema y conocedores del sector.
+          - Enfatizar la innovación y el valor de mercado de nuestro producto/artículo.
+          - Incluir hashtags #entrepreneur #productivity #management.
+          ###Mensaje###
+          ${prompt}
         `,
       },
     ],
