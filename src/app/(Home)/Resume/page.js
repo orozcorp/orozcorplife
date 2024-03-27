@@ -3,6 +3,7 @@ import { getResume } from "../actions/home";
 import Timeline from "@/components/smallComponents/Timeline";
 import Image from "next/image";
 import { rgbDataURL } from "@/lib/helpers/blur";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 export default async function Resume() {
   const resume = (await getResume()) || [];
@@ -14,15 +15,18 @@ export default async function Resume() {
       <div className="w-full flex flex-row flex-wrap items-center"></div>
       <div className=" p-4 bg-white rounded-lg">
         <section className="text-center mb-12 flex flex-row flex-wrap gap-4 justify-start items-center">
-          <Image
-            src="https://orozcorp.s3.us-east-2.amazonaws.com/orozcorp/IMG_0054-testsmall.jpg"
-            alt="Eduardo Orozco Mendoza"
-            width={100}
-            height={153}
-            className="rounded-full"
-            blurDataURL={rgbDataURL(0, 0, 0)}
-            loading="lazy"
-          />
+          <div className="w-[100px] h-[153px]">
+            <AspectRatio ratio={100 / 153}>
+              <Image
+                src="https://orozcorp.s3.us-east-2.amazonaws.com/orozcorp/IMG_0054-testsmall.jpg"
+                alt="Eduardo Orozco Mendoza"
+                className="rounded-full"
+                blurDataURL={rgbDataURL(0, 0, 0)}
+                loading="lazy"
+                fill
+              />
+            </AspectRatio>
+          </div>
           <div>
             <h1 className="text-4xl font-bold text-gray-900">Eduardo Orozco</h1>
             <p className="text-xl text-gray-600">

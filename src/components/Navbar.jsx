@@ -7,6 +7,8 @@ import NavbarDisplayed from "./NavbarDisplayed";
 import Image from "next/image";
 import { useSession, signOut } from "next-auth/react";
 import { rgbDataURL } from "@/lib/helpers/blur";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+
 export default function Navbar() {
   const size = useWindowSize();
   const width = size?.width ?? 0;
@@ -22,15 +24,18 @@ export default function Navbar() {
               <div className="ml-6 flex space-x-8 bg-opacity-0">
                 <Link href="/" passHref>
                   <div className="flex flex-row flex-wrap items-center justify-center gap-4">
-                    <Image
-                      src="https://s3.amazonaws.com/stgfinal/mensajes/BFKQuMxLcF5HDxb9v/1616334156061-790BDD13-A03A-4EF4-94E8-DB239ECC2AEC.jpeg"
-                      width={50}
-                      height={65}
-                      blurDataURL={rgbDataURL(0, 0, 0)}
-                      loading="lazy"
-                      className="w-16 h-16 rounded-full"
-                      alt="Orozcorp"
-                    />
+                    <div className="w-12 h-12 rounded-full">
+                      <AspectRatio ratio={1}>
+                        <Image
+                          src="https://s3.amazonaws.com/stgfinal/mensajes/BFKQuMxLcF5HDxb9v/1616334156061-790BDD13-A03A-4EF4-94E8-DB239ECC2AEC.jpeg"
+                          blurDataURL={rgbDataURL(0, 0, 0)}
+                          loading="lazy"
+                          className="object-cover rounded-full"
+                          alt="Orozcorp"
+                          fill
+                        />
+                      </AspectRatio>
+                    </div>
                     <div className="text-white text-2xl">Eduardo Orozco</div>{" "}
                   </div>
                 </Link>
