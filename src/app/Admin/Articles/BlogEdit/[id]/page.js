@@ -2,19 +2,51 @@
 import { getBlog } from "@/server/blog";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import CopyButton from "@/components/simpleFunctions/CopyButton";
 import BlogPost from "./Blog";
-import { useQuery } from "@tanstack/react-query";
+import { useToast } from "@/components/ui/use-toast";
+import { useQuery, useMutation } from "@tanstack/react-query";
+import { createImagesBulk } from "@/components/atoms/actions/createImage";
 export default function Blog({ params }) {
   const { id } = params;
+  const { toast } = useToast();
   const { data: blog } = useQuery({
     queryKey: ["blog", id],
     queryFn: async () => await getBlog({ id }),
     staleTime: 0,
     intialData: {},
   });
+  const { mutate, isPending } = useMutation({
+    async mutationFn() {
+      const { data, errors } = await createImagesBulk();
+      if (errors) {
+        throw new Error(errors);
+      }
+      return data;
+    },
+    onError(errors) {
+      console.log(errors);
+      toast({
+        title: "Error",
+        description: "Hubo un error al guardar los cambios",
+        variant: "destructive",
+      });
+    },
+    onSuccess() {
+      toast({
+        title: "Blog actualizado",
+        description: "Los cambios se guardaron correctamente",
+      });
+      setEdit(false);
+      queryClient.invalidateQueries(["blog"]);
+    },
+  });
   return (
     <div className="flex flex-row flex-wrap gap-3 justify-between">
+      <Button onClick={mutate} disabled={isPending}>
+        {isPending ? "Running" : "ALL IMAGES"}
+      </Button>
       <div className="max-w-xl flex flex-col flex-nowrap gap-4">
         <div className="flex flex-row flex-wrap gap-2">
           {blog?.image && (

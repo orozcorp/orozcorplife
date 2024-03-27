@@ -16,7 +16,7 @@ export async function POST(req) {
       {
         role: "user",
         content: `
-          Ayúdanos a resumir este mensaje.
+          Ayúdanos a resumir este mensaje con el menos texto possible.
           ${prompt}
           Con el contenido proporcionado, crea una publicación para la página de Facebook de negocios llamada Orozcorp.
           Hazlo como si estuvieras hablando en tercera persona. Un tono muy detallado y serio, pero también amigable.

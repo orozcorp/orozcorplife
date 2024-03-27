@@ -22,6 +22,7 @@ export async function POST(req) {
           Es esencial comunicar el valor y la relevancia del contenido, enfatizando cómo puede beneficiar a los emprendedores en su búsqueda de productividad y eficiencia.
           No olvides incluir los hashtags #emprendedor #productividad #gestión #luz #led para maximizar nuestro alcance.
           La publicación debe ser en español de México, con un toque local que resuene con nuestra audiencia y transmita entusiasmo sobre el producto o artículo.
+          Reduciendo al maximo el texto,
           Este es el mensaje que quiero compartir:
           ${prompt}
 
