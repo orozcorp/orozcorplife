@@ -23,7 +23,7 @@ export async function POST(req) {
             ###Detalles###
             - La publicación debe reflejar conversación amena y entusiasmo.
             - Debe comunicar el valor y la relevancia del contenido, mostrando cómo beneficia a emprendedores en productividad y eficiencia.
-            - Incluir los hashtags #emprendedor #productividad #gestión #luz #led.
+            - Incluir los hashtags #Emprendedores #Productividad #Eficiencia #WhatsBlast #WhatsCRM #ChatDigest.
             - Ajustarse al español de México con un toque local que resuene con la audiencia.
             ###Mensaje###
             ${prompt}

@@ -20,7 +20,7 @@ export async function POST(req) {
           El contenido debe ser muy básico, utilizando palabras simples y evitando tecnicismos.
           Quiero explicar nuestro producto/artículo de una manera que sea fácilmente comprensible para alguien que está aprendiendo sobre el tema.
           El tono debe ser ameno y emocionante, invitando a los seguidores a conocer más sobre lo que ofrecemos.
-          La publicación debe tener menos de 300 caracteres, incluyendo hashtags esenciales como #emprendedor #productividad #gestión #luz #led.
+          La publicación debe tener menos de 300 caracteres, incluyendo hashtags esenciales como #Emprendedores #Productividad #Eficiencia #WhatsBlast #WhatsCRM #ChatDigest.
           Este es el mensaje que quiero compartir:
           ${prompt}
 

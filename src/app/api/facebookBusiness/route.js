@@ -19,7 +19,7 @@ export async function POST(req) {
           ###Instrucción###
           Crea una publicación de Facebook para Orozcorp que resuma el contenido proporcionado en el prompt, utilizando un tono detallado, serio y amigable, hablando en tercera persona.
           El objetivo es incentivar a la audiencia a hacer clic en el enlace para leer la publicación completa del blog.
-          Incluye los hashtags #emprendedor #productividad #gestión #luz #led.
+          Incluye los hashtags #Orozcorp #DesarrolloWeb #DesarrolloDeAplicaciones #Consultoría #WhatsBlast #WhatsCRM #ChatDigest.
           La publicación debe ser en español de México.
           Hazlo captivamente desde el primer párrafo.
           ###Contexto###
