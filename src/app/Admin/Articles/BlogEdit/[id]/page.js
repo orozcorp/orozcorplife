@@ -20,7 +20,10 @@ export default function Blog({ params }) {
   return (
     <div className="flex flex-row flex-wrap gap-3 justify-between">
       <div className="max-w-xl flex flex-col flex-nowrap gap-4">
-        <CopyText text={`/Articles/${id}`} buttonText="Copy URL" />
+        <CopyText
+          text={`https://www.orozcorp.live/Articles/${id}`}
+          buttonText="Copy URL"
+        />
         <div className="flex flex-row flex-wrap gap-2">
           {blog?.image && (
             <Image
