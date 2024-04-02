@@ -60,7 +60,7 @@ export async function saveToDBBlog({ input, imagePrompt }) {
     InvocationType: "Event",
     Payload: JSON.stringify({
       imagePrompt,
-      database: process.env.MONGO_DB,
+      database: process.env.MONGODB_DB,
       collection: "Blog",
       blogId: insertedId,
       location: "plasma/blog/images",

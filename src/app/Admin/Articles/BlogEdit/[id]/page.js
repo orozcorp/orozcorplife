@@ -10,7 +10,6 @@ import { useQuery } from "@tanstack/react-query";
 
 export default function Blog({ params }) {
   const { id } = params;
-
   const { data: blog } = useQuery({
     queryKey: ["blog", id],
     queryFn: async () => await getBlog({ id }),
