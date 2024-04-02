@@ -1,15 +1,9 @@
 "use server";
 import { fetchFromMongo } from "@/lib/mongoAPI";
-import { ObjectId } from "mongodb";
-import fetch from "node-fetch";
 import AWS from "aws-sdk";
-import { blogGetAllNL } from "@/server/blog";
 const S3_ACCESSKEYID = process.env.S3_ACCESSKEYID;
 const S3_SECRETACCESSKEY = process.env.S3_SECRETACCESSKEY;
-const S3_BUCKET = process.env.S3_BUCKET;
 const S3_REGION = process.env.S3_REGION;
-
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
 AWS.config.update({
   region: S3_REGION,
@@ -23,56 +17,29 @@ const lambda = new AWS.Lambda({
   accessKeyId: process.env.S3_ACCESSKEYID,
   secretAccessKey: process.env.S3_SECRETACCESSKEY,
 });
-//HERE TESTING S3 UPLOAD
-export async function generateImage({ imagePrompt }) {
-  const url = "https://api.openai.com/v1/images/generations";
-  const data = {
-    model: "dall-e-3",
-    prompt: imagePrompt,
-    n: 1,
-    size: "1024x1024",
-  };
-  const options = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${OPENAI_API_KEY}`,
-    },
-    body: JSON.stringify(data),
-  };
 
+export async function generateImage({ imagePrompt, blogId }) {
   try {
-    const response = await fetch(url, options);
-    const jsonData = await response.json();
-    const imageUrl = jsonData?.data?.[0]?.url;
-
-    if (!imageUrl) {
-      throw new Error("No image URL found in the response");
-    }
-
-    const imageResponse = await fetch(imageUrl);
-    if (!imageResponse.ok) {
-      throw new Error(`Failed to fetch image from URL: ${imageUrl}`);
-    }
-    const imageBuffer = await imageResponse.buffer();
-    const key = `plasma/blog/images/${Date.now()}.png`;
-    const uploadParams = {
-      Bucket: S3_BUCKET,
-      Key: key,
-      Body: imageBuffer,
-      ContentType: "image/png", // Adjust if the image type is different
+    const params = {
+      FunctionName: "imageGeneration",
+      InvocationType: "Event",
+      Payload: JSON.stringify({
+        imagePrompt,
+        database: process.env.MONGO_DB,
+        collection: "Blog",
+        blogId,
+        location: "orozcorp/blog/images",
+      }),
     };
-
-    const uploadResult = await s3.upload(uploadParams).promise();
-
-    return uploadResult.Location; // Return the S3 URL of the uploaded image
+    await lambda.invoke(params).promise();
+    return "done";
   } catch (error) {
     console.error("Error in generateImage", error);
     return "";
   }
 }
 
-export async function saveToDBBlog({ input }) {
+export async function saveToDBBlog({ input, imagePrompt }) {
   const date = new Date();
   const futureDate = new Date().setFullYear(date.getFullYear() + 20);
   const article = {
@@ -83,12 +50,23 @@ export async function saveToDBBlog({ input }) {
     tags: input.tags,
   };
   input.article = article;
-  input.images = [input.image];
   input.content = input.blog;
   delete input.blog;
-  const insert = await fetchFromMongo("Blog", "insertOne", {
+  const { insertedId } = await fetchFromMongo("Blog", "insertOne", {
     document: { ...input, date: new Date() },
   });
+  const params = {
+    FunctionName: "imageGeneration",
+    InvocationType: "Event",
+    Payload: JSON.stringify({
+      imagePrompt,
+      database: process.env.MONGO_DB,
+      collection: "Blog",
+      blogId: insertedId,
+      location: "plasma/blog/images",
+    }),
+  };
+  await lambda.invoke(params).promise();
   const lambdaParams = [
     { language: "English", expand: true },
     { language: "Spanish", expand: false },
@@ -99,10 +77,11 @@ export async function saveToDBBlog({ input }) {
       lambda
         .invoke({
           FunctionName: "Orozcorp-3versions",
-          Payload: JSON.stringify({ id: insert.insertedId, ...params }),
+          Payload: JSON.stringify({ id: insertedId, ...params }),
         })
         .promise()
     )
   );
+
   return insert.insertedId;
 }

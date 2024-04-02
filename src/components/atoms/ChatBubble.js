@@ -86,9 +86,6 @@ function ChatMessage({ m, firstContent, isLoading }) {
         }));
         results[action.state] = result;
       }
-      const image = await generateImage({
-        imagePrompt: results["Generating Image Prompt"],
-      });
       const tags = JSON.parse(results["Generating Blog Tags"]);
       const blogId = await saveToDBBlog({
         input: {
@@ -100,6 +97,7 @@ function ChatMessage({ m, firstContent, isLoading }) {
           linkedInPost: results["Generating LinkedIn Post"],
           ...tags,
         },
+        imagePrompt: results["Generating Image Prompt"],
       });
       router.push(`/Admin/Articles/BlogEdit/${blogId}`);
     } catch (error) {
