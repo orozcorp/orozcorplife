@@ -3,7 +3,6 @@ import React, { useCallback, useRef, useEffect } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { format_dateHr } from "@/lib/helpers/formatters";
 import { useBlog } from "../../providers/blogProvider";
-import { generateImage } from "./actions/createImage";
 import { saveToDBBlog } from "./actions/createImage";
 import { useCompletion } from "ai/react";
 import { useRouter } from "next/navigation";
@@ -87,10 +86,13 @@ function ChatMessage({ m, firstContent, isLoading }) {
         results[action.state] = result;
       }
       const tags = JSON.parse(results["Generating Blog Tags"]);
+      setBlogData((prevState) => ({
+        ...prevState,
+        generativeState: "Saving Blog",
+      }));
       const blogId = await saveToDBBlog({
         input: {
           blog: results["Generating Blog"],
-          image,
           facebookBusiness: results["Generating Facebook Business"],
           facebookPersonal: results["Generating Facebook Personal"],
           instagramPost: results["Generating Instagram Post"],

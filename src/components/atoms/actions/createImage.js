@@ -40,6 +40,8 @@ export async function generateImage({ imagePrompt, blogId }) {
 }
 
 export async function saveToDBBlog({ input, imagePrompt }) {
+  console.log("input", input);
+  console.log("imagePrompt", imagePrompt);
   const date = new Date();
   const futureDate = new Date().setFullYear(date.getFullYear() + 20);
   const article = {
@@ -52,9 +54,11 @@ export async function saveToDBBlog({ input, imagePrompt }) {
   input.article = article;
   input.content = input.blog;
   delete input.blog;
+  console.log("input", input);
   const { insertedId } = await fetchFromMongo("Blog", "insertOne", {
     document: { ...input, date: new Date() },
   });
+  console.log("insertedId", insertedId);
   const params = {
     FunctionName: "imageGeneration",
     InvocationType: "Event",
@@ -66,7 +70,9 @@ export async function saveToDBBlog({ input, imagePrompt }) {
       location: "plasma/blog/images",
     }),
   };
+  console.log("params", params);
   await lambda.invoke(params).promise();
+  console.log("lambda invoked");
   const lambdaParams = [
     { language: "English", expand: true },
     { language: "Spanish", expand: false },
@@ -82,6 +88,6 @@ export async function saveToDBBlog({ input, imagePrompt }) {
         .promise()
     )
   );
-
-  return insert.insertedId;
+  console.log("lambdas invoked");
+  return insertedId;
 }
