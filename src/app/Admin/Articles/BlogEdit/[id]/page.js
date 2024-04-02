@@ -3,8 +3,9 @@ import { getBlog } from "@/server/blog";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import CopyButton from "@/components/simpleFunctions/CopyButton";
+import CopyText from "@/components/simpleFunctions/CopyText";
 import BlogPost from "./Blog";
-
+import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 
 export default function Blog({ params }) {
@@ -20,6 +21,7 @@ export default function Blog({ params }) {
   return (
     <div className="flex flex-row flex-wrap gap-3 justify-between">
       <div className="max-w-xl flex flex-col flex-nowrap gap-4">
+        <CopyText text={`/Articles/${id}`} buttonText="Copy URL" />
         <div className="flex flex-row flex-wrap gap-2">
           {blog?.image && (
             <Image
@@ -35,6 +37,13 @@ export default function Blog({ params }) {
               <Badge key={index}>{tag}</Badge>
             ))}
           </div>
+          <Link
+            href={blog?.image}
+            download
+            className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+          >
+            Download Image
+          </Link>
         </div>
         <div className="border p-3 shadow-lg rounded text-justify">
           <h2 className="text-2xl font-bold mb-4">Facebook Personal</h2>
